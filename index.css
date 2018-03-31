@@ -1,0 +1,12 @@
+body {
+  background-color: #f8f9fa !important
+}
+
+.sakura-container {
+  max-width: 30rem;
+}
+
+.sakura-card {
+  margin: 20px 0px;
+  padding: 20px;
+}
