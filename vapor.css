@@ -75,6 +75,8 @@ body {
   font-size: 12px !important;
   cursor: default;
   user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
 }
 
 .row {
