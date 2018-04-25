@@ -1,13 +1,11 @@
 html {
-  background: url("vaporwave.gif");
+  background: url("non-free/vaporwave.gif");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
   font-family: "Microsoft Sans Serif", sans-serif !important;
   color: black !important;
-  font-smooth: never !important;
-  -webkit-font-smoothing: none !important;
   image-rendering: pixelated !important;
 }
 
@@ -15,11 +13,6 @@ body {
   width: 100vw;
   height: 100vh;
   background-color: transparent !important;
-  background: url("win.gif"), url("win95.gif"), url("vr.gif"), url("3d.gif"), url("girl.gif");
-  background-size: auto, auto, auto, auto, auto;
-  background-position: center, 2% 2%, 98% 2%, 2% 98%, 98% 98%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
 }
 
 .sakura-window {
@@ -30,7 +23,8 @@ body {
 }
 
 .sakura-card {
-  padding: 0px !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .card {
@@ -83,17 +77,23 @@ body {
   margin: 0px;
 }
 
+.label-tasks {
+  padding: 0px;
+}
+
 .form-group {
   margin-bottom: 7px;
   padding: 0px;
 }
 
-.form-group:nth-child(1) {
-  padding-right: 3px;
-}
-
-.form-group:nth-child(2) {
-  padding-left: 3px;
+@media screen and (min-width: 576px) {
+  .form-group:nth-child(1) {
+    padding-right: 3px;
+  }
+  
+  .form-group:nth-child(2) {
+    padding-left: 3px;
+  }
 }
 
 label {
@@ -106,7 +106,8 @@ label {
 }
 
 input,
-button {
+button,
+select {
   color: black !important;
   position: relative;
   border-radius: 0px !important;
@@ -117,6 +118,21 @@ button {
   height: 21px;
   padding: 2px !important;
   font-size: 12px !important;
+}
+
+
+button,
+select {
+  background: #c3c3c3 !important;
+  border-top: 1px solid #ffffff !important;
+  border-left: 1px solid #ffffff !important;
+  border-bottom: 1px solid #808080 !important;
+  border-right: 1px solid #808080 !important;
+  line-height: 10px !important;
+}
+
+select {
+  height: auto !important;
 }
 
 input:before {
@@ -133,16 +149,8 @@ input:before {
   border-right: 1px solid #dfdfdf;
 }
 
-button {
-  background: #c3c3c3 !important;
-  border-top: 1px solid #ffffff !important;
-  border-left: 1px solid #ffffff !important;
-  border-bottom: 1px solid #808080 !important;
-  border-right: 1px solid #808080 !important;
-  line-height: 10px !important;
-}
-
-button:before {
+button:before,
+select:before {
   border-top: 1px solid #dfdfdf;
   border-left: 1px solid #dfdfdf;
   border-bottom: 1px solid #000000;
@@ -153,6 +161,11 @@ input:focus,
 button:focus {
   color: white !important;
   background: navy !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+select:focus {
   outline: none !important;
   box-shadow: none !important;
 }

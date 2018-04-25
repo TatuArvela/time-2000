@@ -2,6 +2,11 @@ body {
   background-color: #f8f9fa !important
 }
 
+.switcher {
+  margin: auto;
+  width: initial;
+}
+
 .sakura-container {
   max-width: 30rem;
 }
