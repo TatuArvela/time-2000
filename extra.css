@@ -1,0 +1,7 @@
+body {
+  background: url("non-free/win.gif"), url("non-free/win95.gif"), url("non-free/vr.gif"), url("non-free/3d.gif"), url("non-free/girl.gif");
+  background-size: auto, auto, auto, auto, auto;
+  background-position: center, 2% 2%, 98% 2%, 2% 98%, 98% 98%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}

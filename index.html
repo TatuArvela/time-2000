@@ -9,16 +9,23 @@
     crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
     crossorigin="anonymous"></script>
+  <script src="jquery-ui.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
   <script src="moment.min.js"></script>
   <title>Sakura Time 95</title>
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
-  <link rel="stylesheet" href="index.css" />
-  <link rel="stylesheet" href="vapor.css" />
+  <link rel="stylesheet" href="index.css" id="theme-index"/>
+  <link rel="stylesheet" href="vapor.css" id="theme-vapor"/>
+  <link rel="stylesheet" href="extra.css" id="theme-extra" disabled/>
 </head>
 
 <body>
+  <select id="switcher" class="form-control switcher">
+    <option>Plain</option>
+    <option selected>Calm</option>
+    <option>Fantastic</option>
+  </select>
   <div class="container">
     <div class="sakura-window" id="sakura-window">
       <div class="card sakura-card">
@@ -47,12 +54,15 @@
             </div>
             <hr />
             <div class="row">
-              <div class="form-group col-sm-6">
+              <div class="col-sm-6 label-tasks">
                 <label>Tasks</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-sm-6">
                 <input id="task1" class="form-control" type="time" value="00:00" />
               </div>
               <div class="form-group col-sm-6">
-                <label></label>
                 <input id="task2" class="form-control" type="time" value="00:00" />
               </div>
             </div>
@@ -78,10 +88,6 @@
                 <label class="disabled">Unlogged time</label>
                 <input id="unregistered" class="form-control" type="time" disabled />
               </div>
-              <!-- <div class="form-group col-sm-6">
-              <label></label>
-              <button id="save" class="form-control" type="button">Save</button>
-            </div> -->
             </div>
           </form>
         </div>

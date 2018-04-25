@@ -29,41 +29,21 @@ for (var input in inputs) {
     inputs[input].addEventListener("change", inputChangeHandler);
 }
 
+$( "#sakura-window" ).draggable({ containment: "body", scroll: false });
 
-
-function dragElement(elmnt) {
-  var pos1 = 0,
-    pos2 = 0,
-    pos3 = 0,
-    pos4 = 0;
-  if (document.getElementById(elmnt.id + "-title")) {
-    document.getElementById(elmnt.id + "-title").onmousedown = dragMouseDown;
-  } else {
-    elmnt.onmousedown = dragMouseDown;
+$( "#switcher ").change(function() {
+  switch($(this).val()) {
+    case "Plain":
+      $("#theme-vapor").prop( "disabled", true );
+      $("#theme-extra").prop( "disabled", true );
+      break;
+    case "Calm":
+      $("#theme-vapor").prop( "disabled", false );
+      $("#theme-extra").prop( "disabled", true );
+      break;
+    case "Fantastic":
+      $("#theme-vapor").prop( "disabled", false );
+      $("#theme-extra").prop( "disabled", false );
+      break;
   }
-
-  function dragMouseDown(e) {
-    e = e || window.event;
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    document.onmouseup = closeDragElement;
-    document.onmousemove = elementDrag;
-  }
-
-  function elementDrag(e) {
-    e = e || window.event;
-    pos1 = pos3 - e.clientX;
-    pos2 = pos4 - e.clientY;
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-  }
-
-  function closeDragElement() {
-    document.onmouseup = null;
-    document.onmousemove = null;
-  }
-}
-
-dragElement(document.getElementById(("sakura-window")));
+})
