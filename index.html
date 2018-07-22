@@ -15,15 +15,14 @@
   <script src="moment.min.js"></script>
   <title>Sakura Time 95</title>
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
-  <link rel="stylesheet" href="index.css" id="theme-index"/>
-  <link rel="stylesheet" href="vapor.css" id="theme-vapor"/>
+  <link rel="stylesheet" href="index.css" id="theme-index" />
+  <link rel="stylesheet" href="vapor.css" id="theme-vapor" />
 </head>
 
 <body>
   <select id="switcher" class="form-control switcher">
     <option>Plain</option>
-    <option selected>Calm</option>
-    <option>Fantastic</option>
+    <option selected>Aesthetic</option>
   </select>
   <div class="container">
     <div class="sakura-window" id="sakura-window">
@@ -44,7 +43,7 @@
             <div class="row">
               <div class="form-group col-sm-6">
                 <label class="disabled">Lunch</label>
-                <input id="lunch" class="form-control" type="time" value="00:30" disabled />
+                <input id="lunch" class="form-control" type="time" value="00:30" />
               </div>
               <div class="form-group col-sm-6">
                 <label>Breaks</label>
@@ -62,7 +61,15 @@
                 <input id="task1" class="form-control" type="time" value="00:00" />
               </div>
               <div class="form-group col-sm-6">
+                <input type="text" class="form-control" placeholder="Description">
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-sm-6">
                 <input id="task2" class="form-control" type="time" value="00:00" />
+              </div>
+              <div class="form-group col-sm-6">
+                <input type="text" class="form-control" placeholder="Description">
               </div>
             </div>
             <div class="row">
@@ -70,7 +77,15 @@
                 <input id="task3" class="form-control" type="time" value="00:00" />
               </div>
               <div class="form-group col-sm-6">
+                <input type="text" class="form-control" placeholder="Description">
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-sm-6">
                 <input id="task4" class="form-control" type="time" value="00:00" />
+              </div>
+              <div class="form-group col-sm-6">
+                <input type="text" class="form-control" placeholder="Description">
               </div>
             </div>
             <div class="row">
@@ -78,14 +93,36 @@
                 <input id="task5" class="form-control" type="time" value="00:00" />
               </div>
               <div class="form-group col-sm-6">
+                <input type="text" class="form-control" placeholder="Description">
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-sm-6">
                 <input id="task6" class="form-control" type="time" value="00:00" />
+              </div>
+              <div class="form-group col-sm-6">
+                <input type="text" class="form-control" placeholder="Description">
               </div>
             </div>
             <hr />
             <div class="row">
               <div class="form-group col-sm-6">
+                <label class="disabled">Total hours</label>
+                <input id="total" class="form-control" type="time" disabled />
+              </div>
+              <div class="form-group col-sm-6">
                 <label class="disabled">Unlogged time</label>
-                <input id="unregistered" class="form-control" type="time" disabled />
+                <input id="unlogged" class="form-control" type="time" disabled />
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-sm-6">
+                <label class="disabled">Planned hours</label>
+                <input id="planned" class="form-control" type="time" value="07:30"/>
+              </div>
+              <div class="form-group col-sm-6">
+                <label id="differenceTitle" class="disabled">--</label>
+                <input id="difference" class="form-control" type="time" disabled />
               </div>
             </div>
           </form>
