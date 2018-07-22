@@ -8,17 +8,31 @@ function subtractTime(time1, time2) {
 }
 
 function inputChangeHandler() {
-  var output = subtractTime(getValue('stop'), getValue('start'));
-  output = subtractTime(output, getValue('lunch'));
-  output = subtractTime(output, getValue('breaks'));
-  output = subtractTime(output, getValue('task1'));
-  output = subtractTime(output, getValue('task2'));
-  output = subtractTime(output, getValue('task3'));
-  output = subtractTime(output, getValue('task4'));
-  output = subtractTime(output, getValue('task5'));
-  output = subtractTime(output, getValue('task6'));
+  var totalTime = subtractTime(getValue('stop'), getValue('start'));
+  totalTime = subtractTime(totalTime, getValue('lunch'));
+  totalTime = subtractTime(totalTime, getValue('breaks'));
 
-  document.getElementById('unregistered').value = output;
+  var unloggedTime = subtractTime(totalTime, getValue('task1'));
+  unloggedTime = subtractTime(unloggedTime, getValue('task2'));
+  unloggedTime = subtractTime(unloggedTime, getValue('task3'));
+  unloggedTime = subtractTime(unloggedTime, getValue('task4'));
+  unloggedTime = subtractTime(unloggedTime, getValue('task5'));
+  unloggedTime = subtractTime(unloggedTime, getValue('task6'));
+
+  var timeDifference;
+  if (getValue('planned') > totalTime) {
+    document.getElementById('differenceTitle').innerHTML = 'Missing time';
+    var timeDifference = subtractTime(getValue('planned'), totalTime);
+  }
+  else {
+    document.getElementById('differenceTitle').innerHTML = 'Overtime';
+    var timeDifference = subtractTime(totalTime, getValue('planned'));
+  }
+
+
+  document.getElementById('total').value = totalTime;
+  document.getElementById('unlogged').value = unloggedTime;
+  document.getElementById('difference').value = timeDifference;
 }
 
 inputChangeHandler();
