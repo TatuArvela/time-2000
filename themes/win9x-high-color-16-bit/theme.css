@@ -1,0 +1,275 @@
+*, ::after, ::before {
+  box-sizing: border-box;
+  user-select: none;
+  -moz-user-select: none;
+}
+
+/*
+  Shell
+*/
+
+.shell {
+  width: 100vw;
+  height: 100vh;
+  margin: 0px;
+
+  color: rgb(0,0,0);
+  background: rgb(0,124,120);
+  font-size: 12px;
+  font-family: "Microsoft Sans Serif", sans-serif !important;
+  cursor: url("cursor.png"), auto !important;
+}
+
+.shell * {
+  cursor:inherit;
+}
+
+
+/* 
+  Window 
+*/
+
+.window {
+  position: fixed !important;
+  padding: 2px;
+  display: inline-block;
+
+  background: rgb(184,188,184);
+  border-radius: 0px;
+  border-top: 1px solid rgb(216,220,216);
+  border-left: 1px solid rgb(216,220,216);
+  border-bottom: 1px solid rgb(0,0,0);
+  border-right: 1px solid rgb(0,0,0);
+}
+
+.window:before {
+  pointer-events: none;
+  content: " ";
+  position: absolute;
+  z-index: 0;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+
+  border-top: 1px solid rgb(255,255,255);
+  border-left: 1px solid rgb(255,255,255);
+  border-bottom: 1px solid rgb(120,124,120);
+  border-right: 1px solid rgb(120,124,120);
+}
+
+.window.active {
+  z-index: 1;
+}
+
+.window > header {
+  color: white;
+  background: url("../../favicon.ico"), url("close.png"), linear-gradient(90deg, rgb(120,124,120), rgb(176,176,176));
+  background-position: 1px 1px, right 1px top 2px, 0 0;
+  background-repeat: no-repeat;
+  font-weight: bold;
+
+  padding: 0px 20px;
+  height: 18px;
+  line-height: 18px;
+}
+
+.window.active > header {
+  background: url("../../favicon.ico"), url("close.png"), linear-gradient(90deg, rgb(0,0,120), rgb(8,128,200));
+  background-position: 1px 1px, right 1px top 2px, 0 0;
+  background-repeat: no-repeat;
+}
+
+.window > main {
+  margin: 0;
+  padding: 2px 4px;
+}
+
+.window > footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+}
+
+.window > footer > .well {
+  position: relative;
+  flex-grow: 1;
+  margin: 0px 2px 2px 2px;
+  padding: 2px;
+  border-top: 1px solid rgb(120,124,120);
+  border-left: 1px solid rgb(120,124,120);
+  border-bottom: 1px solid rgb(255,255,255);
+  border-right: 1px solid rgb(255,255,255);
+}
+
+.ui-resizable-e {
+  position: absolute;
+  width: 4px;
+  height: 100%;
+  right: 0px;
+  top: 0;
+  bottom: 0;
+  display: block;
+  cursor: url("cursor-resize-e.png") 8 0, auto !important;
+}
+
+.ui-resizable-s {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  display: block;
+  cursor: url("cursor-resize-s.png") 0 8, auto !important;
+}
+
+.ui-resizable-se {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  bottom: 0px;
+  right: 0px;
+  display: block;
+  background-image: url("resize-handle.png");
+  background-position: top left;
+  background-repeat: no-repeat;
+  cursor: url("cursor-resize-se.png") 8 8, auto !important;
+}
+
+.resizable-helper {
+  display: block;
+  border: 30px solid;
+  border-image-source: url("resize-border.png");
+  border-image-slice: 4;
+  border-image-width: 4px 4px;
+  border-image-repeat: round repeat;
+}
+
+
+/*
+  Window structure
+*/
+
+fieldset {
+  z-index: 2;
+  position: relative;
+  margin: 12px;
+  border: none;
+  background: transparent;
+  box-shadow:
+    -1px -1px 0 0px rgb(120,124,120),
+    0 0 0 1px rgb(255,255,255) inset,
+    0px 0px 0 0px rgb(255,255,255),
+    -1px -1px 0 1px rgb(120,124,120) inset;
+  background: none;
+}
+
+legend {
+  padding: 0px 2px;
+  background: rgb(184,188,184);
+}
+
+.row {
+  margin: 0 -2px;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 100%;
+}
+
+.col {
+  flex-basis: 0;
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+}
+
+hr {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid rgb(120,124,120);
+  border-bottom: 1px solid rgb(255,255,255);
+}
+
+label {
+  display: block;
+  margin: 3px 4px;
+}
+
+input,
+select {
+  position: relative;
+  width: calc(100% - 6px);
+  height: 19px;
+  display: block;
+  margin: 3px 4px;
+  padding: 1px;
+
+  color: inherit !important;
+  border-radius: 0px;
+  border-top: 1px solid rgb(0,0,0);
+  border-left: 1px solid rgb(0,0,0);
+  border-bottom: 1px solid rgb(216,220,216);
+  border-right: 1px solid rgb(216,220,216);
+
+  user-select: normal;
+  -moz-user-select: normal !important;
+}
+
+input,
+select,
+input:focus,
+select:focus {
+  outline: none;
+  box-shadow:
+    0.5px 0.5px 0 0.5px rgb(255,255,255),
+    0 0 0 1px rgb(120,124,120);
+}
+
+input {
+  cursor: url("cursor-text.png"), auto !important;
+}
+
+select {
+  padding: 0px 20px 0px 4px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  background-image: url("dropdown.png");
+  background-color: rgb(255,255,255);
+  background-repeat: no-repeat;
+  background-position: bottom right; 
+}
+
+select:active {
+  background-image: url("dropdown-pressed.png");
+}
+
+input:disabled,
+select:disabled,
+.disabled {
+  color: rgb(120,124,120) !important;
+  background: rgb(184,188,184)
+}
+
+::-moz-selection {
+  color: rgb(255,255,255);
+  background: rgb(0,0,120);
+}
+
+::selection {
+  color: rgb(255,255,255);
+  background: rgb(0,0,120);
+}
+
+/*
+  Window restrictions
+*/
+
+#sakura-time,
+.resizable-helper {
+  min-width: 240px;
+  min-height: 490px;
+}
