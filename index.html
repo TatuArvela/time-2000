@@ -5,132 +5,107 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-    crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-  <script src="jquery-ui.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
-  <script src="moment.min.js"></script>
+
+  <script src="scripts/jquery.min.js"></script>
+  <script src="scripts/jquery-ui.min.js"></script>
+  <script src="scripts/moment.min.js"></script>
+  <link rel="stylesheet" href="themes/normalize.css" />
+  <link rel="stylesheet" href="themes/win95/theme.css" id="theme" />
+
   <title>Sakura Time 95</title>
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
-  <link rel="stylesheet" href="index.css" id="theme-index" />
-  <link rel="stylesheet" href="vapor.css" id="theme-vapor" />
 </head>
 
-<body>
-  <select id="switcher" class="form-control switcher">
-    <option>Plain</option>
-    <option selected>Aesthetic</option>
-  </select>
-  <div class="container">
-    <div class="sakura-window" id="sakura-window">
-      <div class="card sakura-card">
-        <div class="card-body">
-          <h5 class="card-title" id="sakura-window-title">Sakura Time 95</h5>
-          <form>
-            <div class="row">
-              <div class="form-group col-sm-6">
-                <label>Start</label>
-                <input id="start" class="form-control" type="time" value="08:30" />
-              </div>
-              <div class="form-group col-sm-6">
-                <label>End</label>
-                <input id="stop" class="form-control" type="time" value="16:30" />
-              </div>
-            </div>
-            <div class="row">
-              <div class="form-group col-sm-6">
-                <label class="disabled">Lunch</label>
-                <input id="lunch" class="form-control" type="time" value="00:30" />
-              </div>
-              <div class="form-group col-sm-6">
-                <label>Breaks</label>
-                <input id="breaks" class="form-control" type="time" value="00:00" />
-              </div>
-            </div>
-            <hr />
-            <div class="row">
-              <div class="col-sm-6 label-tasks">
-                <label>Tasks</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="form-group col-sm-6">
-                <input id="task1" class="form-control" type="time" value="00:00" />
-              </div>
-              <div class="form-group col-sm-6">
-                <input type="text" class="form-control" placeholder="Description">
-              </div>
-            </div>
-            <div class="row">
-              <div class="form-group col-sm-6">
-                <input id="task2" class="form-control" type="time" value="00:00" />
-              </div>
-              <div class="form-group col-sm-6">
-                <input type="text" class="form-control" placeholder="Description">
-              </div>
-            </div>
-            <div class="row">
-              <div class="form-group col-sm-6">
-                <input id="task3" class="form-control" type="time" value="00:00" />
-              </div>
-              <div class="form-group col-sm-6">
-                <input type="text" class="form-control" placeholder="Description">
-              </div>
-            </div>
-            <div class="row">
-              <div class="form-group col-sm-6">
-                <input id="task4" class="form-control" type="time" value="00:00" />
-              </div>
-              <div class="form-group col-sm-6">
-                <input type="text" class="form-control" placeholder="Description">
-              </div>
-            </div>
-            <div class="row">
-              <div class="form-group col-sm-6">
-                <input id="task5" class="form-control" type="time" value="00:00" />
-              </div>
-              <div class="form-group col-sm-6">
-                <input type="text" class="form-control" placeholder="Description">
-              </div>
-            </div>
-            <div class="row">
-              <div class="form-group col-sm-6">
-                <input id="task6" class="form-control" type="time" value="00:00" />
-              </div>
-              <div class="form-group col-sm-6">
-                <input type="text" class="form-control" placeholder="Description">
-              </div>
-            </div>
-            <hr />
-            <div class="row">
-              <div class="form-group col-sm-6">
-                <label class="disabled">Total hours</label>
-                <input id="total" class="form-control" type="time" disabled />
-              </div>
-              <div class="form-group col-sm-6">
-                <label class="disabled">Unlogged time</label>
-                <input id="unlogged" class="form-control" type="time" disabled />
-              </div>
-            </div>
-            <div class="row">
-              <div class="form-group col-sm-6">
-                <label class="disabled">Planned hours</label>
-                <input id="planned" class="form-control" type="time" value="07:30"/>
-              </div>
-              <div class="form-group col-sm-6">
-                <label id="differenceTitle" class="disabled">--</label>
-                <input id="difference" class="form-control" type="time" disabled />
-              </div>
-            </div>
-          </form>
+<body class="shell" id="shell">
+
+  <div class="desktop-icons" id="desktop-icons">
+  </div>
+
+  <div class="window" id="theme-switcher">
+    <header>Theme Switcher</header>
+    <main>
+      <div class="row">
+        <div class="col">
+          <select id="theme-selector">
+            <option value="win9x-16" selected>9X, 16 colors</option>
+            <option value="win9x-256">9X, 256 colors</option>
+            <option value="win9x-high-color-16-bit">9X, High-Color 16-bit</option>
+            <option value="win9x-true-color-32-bit">9X, True Color 32-bit</option>
+            <option value="win2k">2000, True Color 32-bit</option>
+          </select>
         </div>
       </div>
-    </div>
+    </main>
   </div>
-  <script src="index.js"></script>
+
+  <div class="window active" id="sakura-time">
+    <header>Sakura Time 95</header>
+    <main>
+      <fieldset>
+        <legend>Working time</legend>
+        <div class="row">
+          <div class="col">
+            <label>Start</label>
+            <input id="start" data-type="time" value="08:30" />
+            <label>Lunch break</label>
+            <input id="lunch" data-type="time" value="00:30" />
+          </div>
+          <div class="col">
+            <label>End</label>
+            <input id="stop" data-type="time" value="16:30" />
+            <label>Other breaks</label>
+            <input id="breaks" data-type="time" value="00:00" />
+          </div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Tasks</legend>
+        <div class="row">
+          <div class="col">
+            <label>Time</label>
+            <input id="task1" data-type="time" value="00:00" />
+            <input id="task2" data-type="time" value="00:00" />
+            <input id="task3" data-type="time" value="00:00" />
+            <input id="task4" data-type="time" value="00:00" />
+            <input id="task5" data-type="time" value="00:00" />
+            <input id="task6" data-type="time" value="00:00" />
+          </div>
+          <div class="col">
+            <label>Description</label>
+            <input type="text">
+            <input type="text">
+            <input type="text">
+            <input type="text">
+            <input type="text">
+            <input type="text">
+          </div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Report</legend>
+        <div class="row">
+          <div class="col">
+            <label class="disabled">Total hours</label>
+            <input id="total" data-type="time" disabled />
+            <label class="disabled">Planned hours</label>
+            <input id="planned" data-type="time" value="07:30" />
+          </div>
+          <div class="col">
+            <label class="disabled">Unlogged time</label>
+            <input id="unlogged" data-type="time" disabled />
+            <label id="differenceTitle" class="disabled">--</label>
+            <input id="difference" data-type="time" disabled />
+          </div>
+        </div>
+      </fieldset>
+    </main>
+    <footer>
+      <div class="well">Test</div>
+    </footer>
+  </div>
+
+  <script src="scripts/index.js"></script>
+
 </body>
 
 </html>
