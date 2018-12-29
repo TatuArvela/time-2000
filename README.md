@@ -25,8 +25,8 @@ Time can easily integrate into your other business applications via the included
 
 ---
 
-## What is this really?
+## Actual README
 
 * Sakura Time 2000 is meant to be a honoring tribute to late 90s Microsoft Windows and Office applications. I created this mildly useful little application as a CSS, JS and pixel graphics learning practice.
-* The graphics and overall appearancece of the application are property of Microsoft Corporation, where applicable. This is not an actual commercial software product. The made-up name Sakura does not refer to any real-life company.
+* The graphics of the application are property of Microsoft Corporation, where applicable. This is not an actual commercial software product. The made-up name Sakura does not refer to any real-life company.
 * Supported browsers are the latest and greatest versions of Chrome and Firefox. Ironically, Sakura Time 2000 is not fully compatible with Microsoft Internet Explorer or Edge.
