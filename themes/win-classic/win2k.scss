@@ -1,0 +1,18 @@
+---
+---
+
+$text:                      rgb(0,0,0);
+$background:                rgb(58,110,165);
+$active:                    rgb(10,36,106);
+
+$window-text:               rgb(255,255,255);
+$window-passive-background: linear-gradient(90deg, rgb(120,124,120), rgb(176,176,176));
+$window-active-background:  linear-gradient(90deg, rgb(10,36,106), rgb(166,202,240));
+
+$shade0:                    rgb(255,255,255);
+$shade1:                    rgb(212,208,200);
+$shade2:                    rgb(212,208,200);
+$shade3:                    rgb(128,128,128);
+$shade4:                    rgb(0,0,0);
+
+@import 'win-classic';

@@ -6,13 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <script src="scripts/jquery.min.js"></script>
-  <script src="scripts/jquery-ui.min.js"></script>
-  <script src="scripts/moment.min.js"></script>
-  <link rel="stylesheet" href="themes/normalize.css" />
-  <link rel="stylesheet" href="themes/win95/theme.css" id="theme" />
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/jquery-ui.min.js"></script>
+  <script src="assets/js/moment.min.js"></script>
+  <link rel="stylesheet" href="assets/css/normalize.css" />
+  <link rel="stylesheet" href="themes/win-classic/win2k.css" id="theme" />
 
-  <title>Sakura Time 95</title>
+  <title>Sakura Time 2000</title>
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
 </head>
 
@@ -27,11 +27,11 @@
       <div class="row">
         <div class="col">
           <select id="theme-selector">
-            <option value="win9x-16" selected>9X, 16 colors</option>
-            <option value="win9x-256">9X, 256 colors</option>
-            <option value="win9x-high-color-16-bit">9X, High-Color 16-bit</option>
-            <option value="win9x-true-color-32-bit">9X, True Color 32-bit</option>
-            <option value="win2k">2000, True Color 32-bit</option>
+            <option value="win-classic/win9x-16clr" selected>Windows 9x, 16 colors</option>
+            <option value="win-classic/win9x-256clr">Windows 9x, 256 colors</option>
+            <option value="win-classic/win9x-16bit">Windows 9x, High Color 16-bit</option>
+            <option value="win-classic/win9x-32bit">Windows 9x, True Color 32-bit</option>
+            <option value="win-classic/win2k">Windows 2000</option>
           </select>
         </div>
       </div>
@@ -39,7 +39,7 @@
   </div>
 
   <div class="window active" id="sakura-time">
-    <header>Sakura Time 95</header>
+    <header>Sakura Time 2000</header>
     <main>
       <fieldset>
         <legend>Working time</legend>
@@ -104,7 +104,7 @@
     </footer>
   </div>
 
-  <script src="scripts/index.js"></script>
+  <script src="assets/js/index.js"></script>
 
 </body>
 
