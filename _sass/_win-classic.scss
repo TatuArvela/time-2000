@@ -1,0 +1,325 @@
+$text:                      rgb(0,0,0) !default;
+$background:                rgb(87,168,168) !default;
+$active:                    rgb(0,0,168) !default;
+
+$window-text:               rgb(255,255,255) !default;
+$window-active-background:  rgb(0,0,168) !default;
+
+$shade0:                    rgb(255,255,255) !default;
+$shade1:                    rgb(192,199,200) !default;
+$shade2:                    rgb(192,199,200) !default;
+$shade3:                    rgb(135,136,143) !default;
+$shade4:                    rgb(0,0,0) !default;
+
+
+body {
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-crisp-edges;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+*, ::after, ::before {
+  box-sizing: border-box;
+  user-select: none;
+  -moz-user-select: none;
+}
+
+/*
+  Shell
+*/
+
+.shell {
+  width: 100vw;
+  height: 100vh;
+  margin: 0px;
+
+  color: $text;
+  background: $background;
+  font-size: 12px;
+  font-family: "Microsoft Sans Serif", sans-serif !important;
+  cursor: url("cursor.png"), auto !important;
+}
+
+.shell * {
+  cursor:inherit;
+}
+
+
+/* 
+  Window 
+*/
+
+.window {
+  position: fixed !important;
+  padding: 2px;
+  display: inline-block;
+
+  background: $shade2;
+  border-radius: 0px;
+  border-top: 1px solid $shade1;
+  border-left: 1px solid $shade1;
+  border-bottom: 1px solid $shade4;
+  border-right: 1px solid $shade4;
+}
+
+.window:before {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+
+  border-top: 1px solid $shade0;
+  border-left: 1px solid $shade0;
+  border-bottom: 1px solid $shade3;
+  border-right: 1px solid $shade3;
+}
+
+.window.active {
+  z-index: 1;
+}
+
+.window > header {
+  position: relative;
+  color: $window-text;
+  background: $window-passive-background;
+  font-weight: bold;
+
+  padding: 0px 20px;
+  height: 18px;
+  line-height: 18px;
+}
+
+.window > header:before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 16px;
+  height: 16px;
+  left: 1px;
+  top: 1px;
+  background: url("../../favicon.ico");
+}
+
+.window > header:after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 1px;
+  height: 1px;
+  right: 16px;
+  top: 1px;
+  background: transparent;
+  box-shadow:
+  0px 14px $shade4,1px 14px $shade4,2px 14px $shade4,3px 14px $shade4,4px 14px $shade4,5px 14px $shade4,6px 14px $shade4,7px 14px $shade4,8px 14px $shade4,9px 14px $shade4,10px 14px $shade4,11px 14px $shade4,12px 14px $shade4,13px 14px $shade4,14px 14px $shade4,15px 14px $shade4,15px 13px $shade4,15px 12px $shade4,15px 11px $shade4,15px 10px $shade4,15px 9px $shade4,15px 8px $shade4,15px 7px $shade4,15px 6px $shade4,15px 5px $shade4,15px 4px $shade4,15px 3px $shade4,15px 2px $shade4,15px 1px $shade4,0px 13px $shade0,0px 12px $shade0,0px 11px $shade0,0px 10px $shade0,0px 9px $shade0,0px 8px $shade0,0px 7px $shade0,0px 6px $shade0,0px 5px $shade0,0px 4px $shade0,0px 3px $shade0,0px 2px $shade0,0px 1px $shade0,1px 1px $shade0,2px 1px $shade0,3px 1px $shade0,4px 1px $shade0,5px 1px $shade0,6px 1px $shade0,7px 1px $shade0,8px 1px $shade0,9px 1px $shade0,10px 1px $shade0,11px 1px $shade0,12px 1px $shade0,13px 1px $shade0,14px 1px $shade0,1px 2px $shade1,1px 3px $shade1,1px 4px $shade1,1px 5px $shade1,1px 6px $shade1,1px 7px $shade1,1px 8px $shade1,1px 9px $shade1,1px 10px $shade1,1px 11px $shade1,1px 12px $shade1,2px 2px $shade1,3px 2px $shade1,4px 2px $shade1,5px 2px $shade1,6px 2px $shade1,7px 2px $shade1,8px 2px $shade1,9px 2px $shade1,10px 2px $shade1,11px 2px $shade1,12px 2px $shade1,13px 2px $shade1,1px 13px $shade3,2px 13px $shade3,3px 13px $shade3,4px 13px $shade3,5px 13px $shade3,6px 13px $shade3,7px 13px $shade3,8px 13px $shade3,9px 13px $shade3,10px 13px $shade3,11px 13px $shade3,12px 13px $shade3,13px 13px $shade3,14px 13px $shade3,14px 12px $shade3,14px 11px $shade3,14px 10px $shade3,14px 9px $shade3,14px 8px $shade3,14px 7px $shade3,14px 6px $shade3,14px 5px $shade3,14px 4px $shade3,14px 3px $shade3,14px 2px $shade3,2px 12px $shade2,3px 12px $shade2,4px 12px $shade2,5px 12px $shade2,6px 12px $shade2,7px 12px $shade2,8px 12px $shade2,9px 12px $shade2,10px 12px $shade2,11px 12px $shade2,12px 12px $shade2,13px 12px $shade2,13px 11px $shade2,13px 10px $shade2,13px 9px $shade2,13px 8px $shade2,13px 7px $shade2,13px 6px $shade2,13px 5px $shade2,13px 4px $shade2,13px 3px $shade2,12px 3px $shade2,11px 3px $shade2,10px 3px $shade2,9px 3px $shade2,8px 3px $shade2,7px 3px $shade2,6px 3px $shade2,5px 3px $shade2,4px 3px $shade2,3px 3px $shade2,2px 3px $shade2,2px 4px $shade2,2px 5px $shade2,2px 6px $shade2,2px 7px $shade2,2px 8px $shade2,2px 9px $shade2,2px 10px $shade2,2px 11px $shade2,3px 11px $shade2,4px 11px $shade2,6px 7px $shade2,11px 9px $shade2,11px 8px $shade2,11px 7px $shade2,8px 5px $shade2,7px 5px $shade2,4px 5px $shade2,3px 5px $shade2,3px 4px $shade2,6px 4px $shade2,7px 4px $shade2,8px 4px $shade2,9px 4px $shade2,12px 6px $shade2,12px 7px $shade2,12px 8px $shade2,12px 9px $shade2,12px 10px $shade2,10px 11px $shade2,9px 11px $shade2,8px 11px $shade2,7px 11px $shade2,3px 10px $shade2,3px 9px $shade2,3px 8px $shade2,3px 7px $shade2,3px 6px $shade2,4px 6px $shade2,5px 6px $shade2,12px 4px $shade2,5px 7px $shade2,4px 7px $shade2,4px 8px $shade2,4px 9px $shade2,9px 10px $shade2,8px 10px $shade2,5px 8px $shade2,10px 8px $shade2,4px 4px $shade3,5px 4px $shade3,5px 5px $shade3,6px 5px $shade3,6px 6px $shade3,7px 6px $shade3,8px 6px $shade3,9px 6px $shade3,9px 5px $shade3,10px 5px $shade3,10px 4px $shade3,11px 4px $shade3,7px 7px $shade3,8px 7px $shade3,6px 8px $shade3,7px 8px $shade3,8px 8px $shade3,9px 8px $shade3,6px 9px $shade3,5px 9px $shade3,5px 10px $shade3,4px 10px $shade3,9px 9px $shade3,10px 9px $shade3,10px 10px $shade3,11px 10px $shade3,5px 11px $shade0,6px 11px $shade0,6px 10px $shade0,7px 10px $shade0,7px 9px $shade0,8px 9px $shade0,9px 7px $shade0,10px 7px $shade0,10px 6px $shade0,11px 6px $shade0,11px 5px $shade0,12px 5px $shade0,11px 11px $shade0,12px 11px $shade0;
+}
+
+.window.active > header {
+  background: $window-active-background;
+}
+
+.window > main {
+  margin: 0;
+  padding: 2px 4px;
+}
+
+.window > footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+}
+
+.window > footer > .well {
+  position: relative;
+  flex-grow: 1;
+  margin: 0px 2px 2px 2px;
+  padding: 2px;
+  border-top: 1px solid $shade3;
+  border-left: 1px solid $shade3;
+  border-bottom: 1px solid $shade0;
+  border-right: 1px solid $shade0;
+}
+
+.ui-resizable-e {
+  position: absolute;
+  width: 4px;
+  height: 100%;
+  right: 0px;
+  top: 0;
+  bottom: 0;
+  display: block;
+  cursor: url("cursor-resize-e.png") 8 0, auto !important;
+}
+
+.ui-resizable-s {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  display: block;
+  cursor: url("cursor-resize-s.png") 0 8, auto !important;
+}
+
+.ui-resizable-se {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  bottom: 0px;
+  right: 0px;
+  display: block;
+  cursor: url("cursor-resize-se.png") 8 8, auto !important;
+}
+
+.ui-resizable-se:before {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 1px;
+  background: transparent;
+  box-shadow:
+  0px 12px $shade2,1px 12px $shade2,2px 12px $shade2,3px 12px $shade2,4px 12px $shade2,5px 12px $shade2,6px 12px $shade2,7px 12px $shade2,8px 12px $shade2,9px 12px $shade2,10px 12px $shade2,11px 12px $shade2,12px 12px $shade2,12px 11px $shade2,12px 10px $shade2,12px 9px $shade2,12px 8px $shade2,12px 7px $shade2,12px 6px $shade2,12px 5px $shade2,12px 4px $shade2,12px 3px $shade2,12px 2px $shade2,12px 1px $shade2,12px 0px $shade2,11px 11px $shade2,7px 11px $shade2,8px 10px $shade2,9px 9px $shade2,10px 8px $shade2,11px 7px $shade2,3px 11px $shade2,4px 10px $shade2,5px 9px $shade2,6px 8px $shade2,7px 7px $shade2,8px 6px $shade2,9px 5px $shade2,10px 4px $shade2,11px 3px $shade2,0px 11px $shade0,1px 10px $shade0,2px 9px $shade0,3px 8px $shade0,4px 7px $shade0,5px 6px $shade0,6px 5px $shade0,7px 4px $shade0,8px 3px $shade0,9px 2px $shade0,10px 1px $shade0,11px 0px $shade0,9px 11px $shade3,10px 11px $shade3,10px 10px $shade3,11px 10px $shade3,11px 9px $shade3,1px 11px $shade3,2px 11px $shade3,2px 10px $shade3,3px 10px $shade3,3px 9px $shade3,4px 9px $shade3,4px 8px $shade3,5px 8px $shade3,5px 7px $shade3,6px 7px $shade3,6px 6px $shade3,7px 6px $shade3,7px 5px $shade3,8px 5px $shade3,8px 4px $shade3,9px 4px $shade3,9px 3px $shade3,10px 3px $shade3,10px 2px $shade3,11px 2px $shade3,11px 1px $shade3,5px 11px $shade3,6px 11px $shade3,6px 10px $shade3,7px 10px $shade3,8px 9px $shade3,8px 8px $shade3,9px 8px $shade3,9px 7px $shade3,10px 7px $shade3,10px 6px $shade3,11px 6px $shade3,11px 5px $shade3,4px 11px $shade0,5px 10px $shade0,6px 9px $shade0,7px 9px $shade3,7px 8px $shade0,8px 7px $shade0,9px 6px $shade0,10px 5px $shade0,11px 4px $shade0,8px 11px $shade0,9px 10px $shade0,10px 9px $shade0,11px 8px $shade0;
+}
+
+.resizable-helper {
+  display: block;
+  border: 30px solid;
+  border-image-source: url("resize-border.png");
+  border-image-slice: 4;
+  border-image-width: 4px 4px;
+  border-image-repeat: round repeat;
+}
+
+
+/*
+  Window structure
+*/
+
+fieldset {
+  z-index: 2;
+  position: relative;
+  margin: 12px;
+  border: none;
+  background: transparent;
+  box-shadow:
+    -1px -1px 0 0px $shade3,
+    0 0 0 1px $shade0 inset,
+    0px 0px 0 0px $shade0,
+    -1px -1px 0 1px $shade3 inset;
+  background: none;
+}
+
+legend {
+  padding: 0px 2px;
+  background: $shade2;
+}
+
+.row {
+  margin: 0 -2px;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 100%;
+}
+
+.col {
+  flex-basis: 0;
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+}
+
+hr {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid $shade3;
+  border-bottom: 1px solid $shade0;
+}
+
+label {
+  display: block;
+  margin: 3px 4px;
+}
+
+input,
+select {
+  position: relative;
+  width: calc(100% - 6px);
+  height: 19px;
+  display: block;
+  margin: 3px 4px;
+  padding: 1px;
+
+  color: inherit !important;
+  border-radius: 0px;
+  border-top: 1px solid $shade4;
+  border-left: 1px solid $shade4;
+  border-bottom: 1px solid $shade2;
+  border-right: 1px solid $shade2;
+
+  user-select: text;
+  -moz-user-select: text;
+}
+
+input,
+select,
+input:focus,
+select:focus {
+  outline: none;
+  box-shadow:
+    0.5px 0.5px 0 0.5px $shade0,
+    0 0 0 1px $shade3;
+}
+
+input[type="text"],
+input[data-type="time"] {
+  cursor: url("cursor-text.png"), auto !important;
+}
+
+select {
+  padding: 0px 20px 0px 4px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  background-image: url("dropdown.png");
+  background-color: $shade0;
+  background-repeat: no-repeat;
+  background-position: bottom right; 
+}
+
+select:active {
+  background-image: url("dropdown-pressed.png");
+}
+
+input:disabled,
+select:disabled,
+.disabled {
+  color: $shade3 !important;
+  background: $shade2;
+}
+
+::-moz-selection {
+  color: $shade0;
+  background: $active;
+}
+
+::selection {
+  color: $shade0;
+  background: $active;
+}
+
+/*
+  Window restrictions
+*/
+
+#sakura-time,
+.resizable-helper {
+  min-width: 240px;
+  min-height: 490px;
+}
