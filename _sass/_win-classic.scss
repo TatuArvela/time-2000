@@ -1,3 +1,5 @@
+@import 'win-classic-graphics';
+
 $text:                      rgb(0,0,0) !default;
 $background:                rgb(87,168,168) !default;
 $active:                    rgb(0,0,168) !default;
@@ -114,8 +116,7 @@ body {
   right: 16px;
   top: 1px;
   background: transparent;
-  box-shadow:
-  0px 14px $shade4,1px 14px $shade4,2px 14px $shade4,3px 14px $shade4,4px 14px $shade4,5px 14px $shade4,6px 14px $shade4,7px 14px $shade4,8px 14px $shade4,9px 14px $shade4,10px 14px $shade4,11px 14px $shade4,12px 14px $shade4,13px 14px $shade4,14px 14px $shade4,15px 14px $shade4,15px 13px $shade4,15px 12px $shade4,15px 11px $shade4,15px 10px $shade4,15px 9px $shade4,15px 8px $shade4,15px 7px $shade4,15px 6px $shade4,15px 5px $shade4,15px 4px $shade4,15px 3px $shade4,15px 2px $shade4,15px 1px $shade4,0px 13px $shade0,0px 12px $shade0,0px 11px $shade0,0px 10px $shade0,0px 9px $shade0,0px 8px $shade0,0px 7px $shade0,0px 6px $shade0,0px 5px $shade0,0px 4px $shade0,0px 3px $shade0,0px 2px $shade0,0px 1px $shade0,1px 1px $shade0,2px 1px $shade0,3px 1px $shade0,4px 1px $shade0,5px 1px $shade0,6px 1px $shade0,7px 1px $shade0,8px 1px $shade0,9px 1px $shade0,10px 1px $shade0,11px 1px $shade0,12px 1px $shade0,13px 1px $shade0,14px 1px $shade0,1px 2px $shade1,1px 3px $shade1,1px 4px $shade1,1px 5px $shade1,1px 6px $shade1,1px 7px $shade1,1px 8px $shade1,1px 9px $shade1,1px 10px $shade1,1px 11px $shade1,1px 12px $shade1,2px 2px $shade1,3px 2px $shade1,4px 2px $shade1,5px 2px $shade1,6px 2px $shade1,7px 2px $shade1,8px 2px $shade1,9px 2px $shade1,10px 2px $shade1,11px 2px $shade1,12px 2px $shade1,13px 2px $shade1,1px 13px $shade3,2px 13px $shade3,3px 13px $shade3,4px 13px $shade3,5px 13px $shade3,6px 13px $shade3,7px 13px $shade3,8px 13px $shade3,9px 13px $shade3,10px 13px $shade3,11px 13px $shade3,12px 13px $shade3,13px 13px $shade3,14px 13px $shade3,14px 12px $shade3,14px 11px $shade3,14px 10px $shade3,14px 9px $shade3,14px 8px $shade3,14px 7px $shade3,14px 6px $shade3,14px 5px $shade3,14px 4px $shade3,14px 3px $shade3,14px 2px $shade3,2px 12px $shade2,3px 12px $shade2,4px 12px $shade2,5px 12px $shade2,6px 12px $shade2,7px 12px $shade2,8px 12px $shade2,9px 12px $shade2,10px 12px $shade2,11px 12px $shade2,12px 12px $shade2,13px 12px $shade2,13px 11px $shade2,13px 10px $shade2,13px 9px $shade2,13px 8px $shade2,13px 7px $shade2,13px 6px $shade2,13px 5px $shade2,13px 4px $shade2,13px 3px $shade2,12px 3px $shade2,11px 3px $shade2,10px 3px $shade2,9px 3px $shade2,8px 3px $shade2,7px 3px $shade2,6px 3px $shade2,5px 3px $shade2,4px 3px $shade2,3px 3px $shade2,2px 3px $shade2,2px 4px $shade2,2px 5px $shade2,2px 6px $shade2,2px 7px $shade2,2px 8px $shade2,2px 9px $shade2,2px 10px $shade2,2px 11px $shade2,3px 11px $shade2,4px 11px $shade2,6px 7px $shade2,11px 9px $shade2,11px 8px $shade2,11px 7px $shade2,8px 5px $shade2,7px 5px $shade2,4px 5px $shade2,3px 5px $shade2,3px 4px $shade2,6px 4px $shade2,7px 4px $shade2,8px 4px $shade2,9px 4px $shade2,12px 6px $shade2,12px 7px $shade2,12px 8px $shade2,12px 9px $shade2,12px 10px $shade2,10px 11px $shade2,9px 11px $shade2,8px 11px $shade2,7px 11px $shade2,3px 10px $shade2,3px 9px $shade2,3px 8px $shade2,3px 7px $shade2,3px 6px $shade2,4px 6px $shade2,5px 6px $shade2,12px 4px $shade2,5px 7px $shade2,4px 7px $shade2,4px 8px $shade2,4px 9px $shade2,9px 10px $shade2,8px 10px $shade2,5px 8px $shade2,10px 8px $shade2,4px 4px $shade3,5px 4px $shade3,5px 5px $shade3,6px 5px $shade3,6px 6px $shade3,7px 6px $shade3,8px 6px $shade3,9px 6px $shade3,9px 5px $shade3,10px 5px $shade3,10px 4px $shade3,11px 4px $shade3,7px 7px $shade3,8px 7px $shade3,6px 8px $shade3,7px 8px $shade3,8px 8px $shade3,9px 8px $shade3,6px 9px $shade3,5px 9px $shade3,5px 10px $shade3,4px 10px $shade3,9px 9px $shade3,10px 9px $shade3,10px 10px $shade3,11px 10px $shade3,5px 11px $shade0,6px 11px $shade0,6px 10px $shade0,7px 10px $shade0,7px 9px $shade0,8px 9px $shade0,9px 7px $shade0,10px 7px $shade0,10px 6px $shade0,11px 6px $shade0,11px 5px $shade0,12px 5px $shade0,11px 11px $shade0,12px 11px $shade0;
+  box-shadow: $graphics-button-close;
 }
 
 .window.active > header {
@@ -184,8 +185,7 @@ body {
   width: 1px;
   height: 1px;
   background: transparent;
-  box-shadow:
-  0px 12px $shade2,1px 12px $shade2,2px 12px $shade2,3px 12px $shade2,4px 12px $shade2,5px 12px $shade2,6px 12px $shade2,7px 12px $shade2,8px 12px $shade2,9px 12px $shade2,10px 12px $shade2,11px 12px $shade2,12px 12px $shade2,12px 11px $shade2,12px 10px $shade2,12px 9px $shade2,12px 8px $shade2,12px 7px $shade2,12px 6px $shade2,12px 5px $shade2,12px 4px $shade2,12px 3px $shade2,12px 2px $shade2,12px 1px $shade2,12px 0px $shade2,11px 11px $shade2,7px 11px $shade2,8px 10px $shade2,9px 9px $shade2,10px 8px $shade2,11px 7px $shade2,3px 11px $shade2,4px 10px $shade2,5px 9px $shade2,6px 8px $shade2,7px 7px $shade2,8px 6px $shade2,9px 5px $shade2,10px 4px $shade2,11px 3px $shade2,0px 11px $shade0,1px 10px $shade0,2px 9px $shade0,3px 8px $shade0,4px 7px $shade0,5px 6px $shade0,6px 5px $shade0,7px 4px $shade0,8px 3px $shade0,9px 2px $shade0,10px 1px $shade0,11px 0px $shade0,9px 11px $shade3,10px 11px $shade3,10px 10px $shade3,11px 10px $shade3,11px 9px $shade3,1px 11px $shade3,2px 11px $shade3,2px 10px $shade3,3px 10px $shade3,3px 9px $shade3,4px 9px $shade3,4px 8px $shade3,5px 8px $shade3,5px 7px $shade3,6px 7px $shade3,6px 6px $shade3,7px 6px $shade3,7px 5px $shade3,8px 5px $shade3,8px 4px $shade3,9px 4px $shade3,9px 3px $shade3,10px 3px $shade3,10px 2px $shade3,11px 2px $shade3,11px 1px $shade3,5px 11px $shade3,6px 11px $shade3,6px 10px $shade3,7px 10px $shade3,8px 9px $shade3,8px 8px $shade3,9px 8px $shade3,9px 7px $shade3,10px 7px $shade3,10px 6px $shade3,11px 6px $shade3,11px 5px $shade3,4px 11px $shade0,5px 10px $shade0,6px 9px $shade0,7px 9px $shade3,7px 8px $shade0,8px 7px $shade0,9px 6px $shade0,10px 5px $shade0,11px 4px $shade0,8px 11px $shade0,9px 10px $shade0,10px 9px $shade0,11px 8px $shade0;
+  box-shadow: $graphics-resize-handle;
 }
 
 .resizable-helper {
@@ -246,8 +246,14 @@ label {
   margin: 3px 4px;
 }
 
+
+/*
+  Inputs
+*/
+
 input,
-select {
+select,
+.ui-selectmenu-button {
   position: relative;
   width: calc(100% - 6px);
   height: 19px;
@@ -255,7 +261,8 @@ select {
   margin: 3px 4px;
   padding: 1px;
 
-  color: inherit !important;
+  background: $shade0;
+  color: $shade4;
   border-radius: 0px;
   border-top: 1px solid $shade4;
   border-left: 1px solid $shade4;
@@ -269,23 +276,26 @@ select {
 input,
 select,
 input:focus,
-select:focus {
+select:focus,
+.ui-selectmenu-button {
   outline: none;
   box-shadow:
     0.5px 0.5px 0 0.5px $shade0,
     0 0 0 1px $shade3;
 }
 
-input[type="text"],
-input[data-type="time"] {
-  cursor: url("cursor-text.png"), auto !important;
+button,
+button:focus {
+  outline: none;
 }
 
-select {
+select,
+.ui-selectmenu-button {
   padding: 0px 20px 0px 4px;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+  white-space: nowrap;
 
   background-image: url("dropdown.png");
   background-color: $shade0;
@@ -293,8 +303,56 @@ select {
   background-position: bottom right; 
 }
 
-select:active {
+select:active,
+.ui-selectmenu-button:active {
   background-image: url("dropdown-pressed.png");
+}
+
+.ui-selectmenu-text {
+  position: absolute;
+  left: 1px;
+  right: 17px;
+  top: 1px;
+  bottom: 1px;
+  padding-left: 1px;
+}
+
+.ui-selectmenu-menu ul li:hover,
+.ui-selectmenu-button:focus:not(.ui-selectmenu-button-open) > .ui-selectmenu-text {
+  color: $shade0;
+  background: $active;
+  border: 1px dotted #f8fc80;
+}
+
+.ui-selectmenu-menu {
+  visibility: hidden;
+  display: block;
+  width: 200px;
+  border: 1px solid $shade4;
+  background: $shade0;
+  z-index: 200;
+}
+
+.ui-selectmenu-menu.ui-selectmenu-open {
+  visibility: visible;
+}
+
+.ui-selectmenu-icon {
+  display: none;
+}
+
+.ui-selectmenu-menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ui-selectmenu-menu ul li {
+  padding: 2px;
+}
+
+.ui-selectmenu-menu ul li:hover {
+  padding: 1px;
 }
 
 input:disabled,
@@ -313,6 +371,77 @@ select:disabled,
   color: $shade0;
   background: $active;
 }
+
+
+/*
+  Time inputs
+*/
+
+
+input[type="text"],
+input[data-type="time"] {
+  cursor: url("cursor-text.png"), auto !important;
+}
+
+input[data-type="time"] {
+  margin: 0px;
+  width: calc(100% - 16px);
+}
+
+.time-input-group {
+  position: relative;
+  display: block;
+  margin: 3px 2px 3px 4px;
+}
+
+.time-increase,
+.time-decrease {
+  position: absolute;
+  right: -2px;
+  height: 10px;
+  width: 16px;
+  padding: 0;
+
+  background: none;
+  border: none;
+}
+
+.time-increase {
+  top: 0px;
+}
+
+.time-decrease {
+  top: 10px;
+}
+
+.time-increase:before,
+.time-decrease:before {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 1px;
+  background: transparent;
+  position: relative;
+  left: -2px;
+  top: -6px;
+}
+
+.time-increase:before {
+  box-shadow: $graphics-button-increase;
+}
+
+.time-decrease:before {
+  box-shadow: $graphics-button-decrease;
+}
+
+.time-increase.active:before {
+  box-shadow: $graphics-button-increase-active;
+}
+
+.time-decrease.active:before {
+  box-shadow: $graphics-button-decrease-active;
+}
+
 
 /*
   Window restrictions
