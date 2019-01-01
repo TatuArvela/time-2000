@@ -6,9 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+  <!-- I would like not having jQuery, but jQuery UI was still the most stable
+    library I was able to find for dragging and resizing. -->
   <script src="assets/js/jquery.min.js"></script>
   <script src="assets/js/jquery-ui.min.js"></script>
   <script src="assets/js/moment.min.js"></script>
+
   <link rel="stylesheet" href="assets/css/normalize.css" />
   <link rel="stylesheet" href="themes/win-classic/win2k.css" id="theme" />
 
@@ -32,6 +35,7 @@
             <option value="win-classic/win9x-16bit">Windows 9x, High Color 16-bit</option>
             <option value="win-classic/win9x-32bit">Windows 9x, True Color 32-bit</option>
             <option value="win-classic/win2k">Windows 2000</option>
+            <option value="win-classic/vaporwave">ウィンドウズ</option>
           </select>
         </div>
       </div>
@@ -46,15 +50,23 @@
         <div class="row">
           <div class="col">
             <label>Start</label>
-            <input id="start" data-type="time" value="08:30" />
+            <div class="time-input-group">
+              <input id="start" data-type="time"/>
+            </div>
             <label>Lunch break</label>
-            <input id="lunch" data-type="time" value="00:30" />
+            <div class="time-input-group">
+              <input id="lunch" data-type="time"/>
+            </div>
           </div>
           <div class="col">
             <label>End</label>
-            <input id="stop" data-type="time" value="16:30" />
+            <div class="time-input-group">
+              <input id="stop" data-type="time"/>
+            </div>
             <label>Other breaks</label>
-            <input id="breaks" data-type="time" value="00:00" />
+            <div class="time-input-group">
+              <input id="breaks" data-type="time"/>
+            </div>
           </div>
         </div>
       </fieldset>
@@ -63,12 +75,24 @@
         <div class="row">
           <div class="col">
             <label>Time</label>
-            <input id="task1" data-type="time" value="00:00" />
-            <input id="task2" data-type="time" value="00:00" />
-            <input id="task3" data-type="time" value="00:00" />
-            <input id="task4" data-type="time" value="00:00" />
-            <input id="task5" data-type="time" value="00:00" />
-            <input id="task6" data-type="time" value="00:00" />
+            <div class="time-input-group">
+              <input id="task1" data-type="time"/>
+            </div>
+            <div class="time-input-group">
+              <input id="task2" data-type="time"/>
+            </div>
+            <div class="time-input-group">
+              <input id="task3" data-type="time"/>
+            </div>
+            <div class="time-input-group">
+              <input id="task4" data-type="time"/>
+            </div>
+            <div class="time-input-group">
+              <input id="task5" data-type="time"/>
+            </div>
+            <div class="time-input-group">
+              <input id="task6" data-type="time"/>
+            </div>
           </div>
           <div class="col">
             <label>Description</label>
@@ -86,15 +110,18 @@
         <div class="row">
           <div class="col">
             <label class="disabled">Total hours</label>
-            <input id="total" data-type="time" disabled />
+            <input id="total" disabled />
             <label class="disabled">Planned hours</label>
-            <input id="planned" data-type="time" value="07:30" />
+            <div class="time-input-group">
+              <input id="planned" data-type="time"/>
+            </div>
           </div>
           <div class="col">
             <label class="disabled">Unlogged time</label>
-            <input id="unlogged" data-type="time" disabled />
+            <input id="unlogged" disabled />
+
             <label id="differenceTitle" class="disabled">--</label>
-            <input id="difference" data-type="time" disabled />
+            <input id="difference" disabled />
           </div>
         </div>
       </fieldset>
@@ -104,7 +131,8 @@
     </footer>
   </div>
 
-  <script src="assets/js/index.js"></script>
+  <script src="assets/js/shell.js"></script>
+  <script src="assets/js/time2k.js"></script>
 
 </body>
 
