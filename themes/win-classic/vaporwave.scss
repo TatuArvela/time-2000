@@ -21,19 +21,16 @@ $shade4: rgb(164, 81, 123);
 
 .shell {
   background-size: 100% 100%;
-  perspective: 4000px;
   cursor: url("cursor-aesthetic.png"), auto !important;
 }
 
 .window {
   outline: 0px solid transparent;
-  transform: translateZ(-600px);
-  transition: transform 0.5s, outline 1s;
+  transition: outline 1s;
   transform-style: preserve-3d;
 }
 .window.active {
   outline: 5px solid cyan;
-  transform: translateZ(0);
   -webkit-animation: Vaporwave 1s linear infinite;
   -moz-animation: Vaporwave 1s linear infinite;
   animation: Vaporwave 1s linear infinite;

@@ -33,10 +33,22 @@ $('#sakura-time').resizable({
   Time inputs
 */
 
+function handleTimeButtonClick(eventTarget) {
+  let [method, target] = eventTarget.split("-");
+  document.getElementById(target).focus();
+  let activeInput = document.activeElement;
+  if (activeInput.getAttribute('id') != target) {
+    document.activeElement = document.getElementById(target);
+  }
+  let keyCode = (method == "dec") ? 40 : 38;
+  $(activeInput).trigger({type: 'keypress', which: keyCode, keyCode: keyCode});
+}
+
 function createTimeButtons(input) {
   const increase = document.createElement('button');
   increase.setAttribute('class', 'time-button time-increase');
   increase.setAttribute('id', 'inc-' + input.getAttribute('id'));
+  increase.setAttribute('tabIndex', '-1');
   increase.addEventListener('mousedown', function (event) {
     event.preventDefault();
     event.target.classList.add('active');
@@ -49,6 +61,7 @@ function createTimeButtons(input) {
   const decrease = document.createElement('button');
   decrease.setAttribute('class', 'time-button time-decrease');
   decrease.setAttribute('id', 'dec-' + input.getAttribute('id'));
+  decrease.setAttribute('tabIndex', '-1');
   decrease.addEventListener('mousedown', function (event) {
     event.preventDefault();
     event.target.classList.add('active');
@@ -62,46 +75,23 @@ function createTimeButtons(input) {
   input.after(increase);
 }
 
-function handleTimeInput(e) {
-  let values = e.target.value.split(':');
-  if (values.length != 2) {
-    e.target.value = "00:00";
-    return;
-  }
-
-  let start = document.activeElement.selectionStart;
-  let end = document.activeElement.selectionEnd;
-  console.log(start, end);
-
-  values[0] = values[0].trim().substring(0, 2).padStart(2, ' ');
-  values[1] = values[1].trim().substring(0, 2).padStart(2, ' ');
-  e.target.value = values[0] + ':' + values[1];
-
-  if (start === 1 && end === 1) {
-    start = 2;
-    end = 2;
-  }
-  if (start === 4 && end === 4) {
-    start = 6;
-    end = 6;
-  }
-
-  document.activeElement.setSelectionRange(start, end);
-}
-
-function handleTimeLeave(e) {
+function handleTimeBlur(e) {
   let values = e.target.value.split(':');
 
-  if (values.length != 2) {
-    e.target.value = "00:00";
-    return;
+  if (values.length === 0) {
+    values[0] = "00";
+    values[1] = "00";
   }
-
-  values[0] = values[0].trim().substring(0, 2).padStart(2, ' ');
-  values[1] = values[1].trim().substring(0, 2).padStart(2, ' ');
-  if (!parseInt(values[0]) || values[0] > 23 || values[0] < 0) values[0] = "00";
-  if (!parseInt(values[1]) || values[1] > 59 || values[1] < 0) values[0] = "00";
-  e.target.value = moment(values[0] + ':' + values[1], "HH:mm").format('HH:mm');
+  else if (values.length === 1) {
+    values[1] = "00";
+  }
+  else {
+    values[0] = values[0].trim().substring(0, 2);
+    values[1] = values[1].trim().substring(0, 2);
+    if (!parseInt(values[0]) || values[0] > 23 || values[0] < 0) values[0] = "00";
+    if (!parseInt(values[1]) || values[1] > 59 || values[1] < 0) values[0] = "00";
+    e.target.value = moment(values[0] + ':' + values[1], "HH:mm").format('HH:mm');
+  }
 }
 
 function handleTimeKeypress(e) {
@@ -116,39 +106,16 @@ function handleTimeKeypress(e) {
     e.target.value = time.format('HH:mm');
 
     document.activeElement.setSelectionRange(start, end);
-  }
-}
-
-function handleTimeButtonClick(eventTarget) {
-  if (window.getSelection &&
-      document.activeElement &&
-      (document.activeElement.getAttribute('data-type') == 'time')
-  ) {
-    let [method, target] = eventTarget.split("-");
-    let activeInput = document.activeElement;
-    let time = moment(activeInput.value, "HH:mm");
-    if (activeInput.getAttribute('id') === target &&
-        time.isValid()
-    ) {
-      let start = activeInput.selectionStart;
-      let end = activeInput.selectionEnd;
-
-      let unit = (end < 3) ? "hours" : "minutes";
-      (method === "inc") ? time.add(1, unit) : time.subtract(1, unit);
-      activeInput.value = time.format('HH:mm');
-
-      activeInput.dispatchEvent(new Event('change'));
-      activeInput.setSelectionRange(start, end);
-    }
+    e.preventDefault();
   }
 }
 
 var timeInputs = document.querySelectorAll('input[data-type="time"]');
 for (let i = 0; i < timeInputs.length; i++) {
   createTimeButtons(timeInputs[i]);
-  timeInputs[i].oninput = handleTimeInput;
+  timeInputs[i].onblur = handleTimeBlur;
+  timeInputs[i].onkeydown = handleTimeKeypress;
   timeInputs[i].onkeypress = handleTimeKeypress;
-  timeInputs[i].onblur = handleTimeLeave;
 }
 
 
@@ -166,7 +133,7 @@ $('#theme-selector').selectmenu({
     if (event.target.value) {
       setTheme(event.target.value);
     }
-   else {
+    else {
       setTheme('');
     }
   }
