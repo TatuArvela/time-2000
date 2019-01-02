@@ -57,7 +57,8 @@ body {
 .window {
   position: fixed !important;
   padding: 2px;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
 
   background: $shade2;
   border-radius: 0px;
@@ -126,15 +127,74 @@ body {
 }
 
 .window > main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
   margin: 0;
   padding: 2px 4px;
 }
 
+
+/*
+  Menu
+*/
+
+.window > main > menu {
+  height: 23px;
+  margin: -1px -4px 0px -4px;
+  padding: 0px;
+  border-top: 1px solid $shade0;
+  border-left: 1px solid $shade0;
+  border-bottom: 2px solid $shade3;
+  border-right: 1px solid $shade3;
+}
+
+.window > main > menu > button {
+  position: relative;
+  left: -1px;
+  top: -1px;
+  height: 22px;
+  width: 22px;
+  margin-right: 0px;
+  border: 1px solid transparent;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: 2px 2px;
+  float: left;
+  &.menu-button-new {
+    background-image: url("icon-new.png");
+  }
+  &.menu-button-open {
+    background-image: url("icon-open.png");
+  }
+  &.menu-button-save {
+    background-image: url("icon-save.png");
+  }
+  &.menu-button-export {
+    background-image: url("icon-export.png");
+  }
+  &:hover {
+    border-top: 1px solid $shade0;
+    border-left: 1px solid $shade0;
+    border-bottom: 1px solid $shade3;
+    border-right: 1px solid $shade3;
+  }
+  &:active {
+    background-position: 3px 3px;
+    border-top: 1px solid $shade3;
+    border-left: 1px solid $shade3;
+    border-bottom: 1px solid $shade0;
+    border-right: 1px solid $shade0;
+  }
+}
+
+
+/*
+  Footer
+*/
+
 .window > footer {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  margin: -1px;
   display: flex;
 }
 
@@ -142,12 +202,18 @@ body {
   position: relative;
   flex-grow: 1;
   margin: 0px 2px 2px 2px;
+  height: 20px;
   padding: 2px;
   border-top: 1px solid $shade3;
   border-left: 1px solid $shade3;
   border-bottom: 1px solid $shade0;
   border-right: 1px solid $shade0;
 }
+
+
+/*
+  Resizable
+*/
 
 .ui-resizable-e {
   position: absolute;
@@ -203,6 +269,16 @@ body {
 /*
   Window structure
 */
+
+form.well {
+  margin: 0px -2px 2px -3px;
+  flex-grow: 1;
+  border-top: 1px solid $shade4;
+  border-left: 1px solid $shade4;
+  border-bottom: 1px solid $shade0;
+  border-right: 1px solid $shade0;
+  box-shadow: -1px 0px 0px $shade3;
+}
 
 fieldset {
   z-index: 2;
@@ -386,8 +462,14 @@ input[data-type="time"] {
 }
 
 input[data-type="time"] {
+  -moz-appearance: none;
   margin: 0px;
   width: calc(100% - 16px);
+}
+
+input[type=time]::-webkit-clear-button,
+input[type=time]::-webkit-inner-spin-button{
+  display: none;
 }
 
 .time-input-group {
@@ -452,5 +534,5 @@ input[data-type="time"] {
 #sakura-time,
 .resizable-helper {
   min-width: 240px;
-  min-height: 490px;
+  min-height: 532px;
 }
