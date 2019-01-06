@@ -50,6 +50,23 @@ body {
 }
 
 
+/*
+  Splash
+*/
+.splash {
+  display: block;
+  height: 247px;
+  width: 400px;
+  background: url("splash.png");
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin: auto;
+}
+
+
 /* 
   Window 
 */
@@ -139,7 +156,7 @@ body {
   Menu
 */
 
-.window > main > menu {
+.window > main > .menu {
   height: 23px;
   margin: -1px -4px 0px -4px;
   padding: 0px;
@@ -149,7 +166,7 @@ body {
   border-right: 1px solid $shade3;
 }
 
-.window > main > menu > button {
+.window > main > .menu > button {
   position: relative;
   left: -1px;
   top: -1px;
@@ -270,7 +287,7 @@ body {
   Window structure
 */
 
-form.well {
+.well {
   margin: 0px -2px 2px -3px;
   flex-grow: 1;
   border-top: 1px solid $shade4;
