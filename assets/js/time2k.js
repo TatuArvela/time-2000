@@ -2,25 +2,61 @@
   Sakura Time 2000
 */
 
-var defaults = {
-  start:    "08:30",
-  lunch:    "00:30",
-  stop:     "16:30",
-  breaks:   "00:00",
-  task1:    "00:00",
-  task2:    "00:00",
-  task3:    "00:00",
-  task4:    "00:00",
-  task5:    "00:00",
-  task6:    "00:00",
-  planned:  "07:30"
+const fields = [
+  'start',
+  'stop',
+  'lunch',
+  'breaks',
+  'task1time',
+  'task1desc',
+  'task2time',
+  'task2desc',
+  'task3time',
+  'task3desc',
+  'task4time',
+  'task4desc',
+  'task5time',
+  'task5desc',
+  'task6time',
+  'task6desc',
+  'total',
+  'unlogged',
+  'planned',
+  'difference'
+];
+
+const empty = {
+  start:      '00:00',
+  lunch:      '00:00',
+  stop:       '00:00',
+  breaks:     '00:00',
+  task1time:  '00:00',
+  task2time:  '00:00',
+  task3time:  '00:00',
+  task4time:  '00:00',
+  task5time:  '00:00',
+  task6time:  '00:00',
+  planned:    '00:00'
 }
 
-function setDefaults() {
-  for (var key in defaults) {
-    document.getElementById(key).value = defaults[key];
-  }
+const defaults = {
+  start:      '08:30',
+  lunch:      '00:30',
+  stop:       '16:30',
+  breaks:     '00:00',
+  task1time:  '00:00',
+  task2time:  '00:00',
+  task3time:  '00:00',
+  task4time:  '00:00',
+  task5time:  '00:00',
+  task6time:  '00:00',
+  planned:    '07:30'
 }
+
+
+/*
+  Time calculations
+*/
 
 function getValue(id) {
   var value = document.getElementById(id).value;
@@ -36,21 +72,19 @@ function calculateTimes() {
   totalTime = subtractTime(totalTime, getValue('lunch'));
   totalTime = subtractTime(totalTime, getValue('breaks'));
 
-  var unloggedTime = subtractTime(totalTime, getValue('task1'));
-  unloggedTime = subtractTime(unloggedTime, getValue('task2'));
-  unloggedTime = subtractTime(unloggedTime, getValue('task3'));
-  unloggedTime = subtractTime(unloggedTime, getValue('task4'));
-  unloggedTime = subtractTime(unloggedTime, getValue('task5'));
-  unloggedTime = subtractTime(unloggedTime, getValue('task6'));
+  var unloggedTime = subtractTime(totalTime, getValue('task1time'));
+  unloggedTime = subtractTime(unloggedTime, getValue('task2time'));
+  unloggedTime = subtractTime(unloggedTime, getValue('task3time'));
+  unloggedTime = subtractTime(unloggedTime, getValue('task4time'));
+  unloggedTime = subtractTime(unloggedTime, getValue('task5time'));
+  unloggedTime = subtractTime(unloggedTime, getValue('task6time'));
 
   var timeDifference;
-  if (getValue('planned') > totalTime) {
-    document.getElementById('differenceTitle').innerHTML = 'Missing time';
+  if (getValue('planned') >= totalTime) {
     var timeDifference = subtractTime(getValue('planned'), totalTime);
   }
  else {
-    document.getElementById('differenceTitle').innerHTML = 'Overtime';
-    var timeDifference = subtractTime(totalTime, getValue('planned'));
+    var timeDifference = '-' + subtractTime(totalTime, getValue('planned'));
   }
 
   document.getElementById('total').value = totalTime;
@@ -58,8 +92,64 @@ function calculateTimes() {
   document.getElementById('difference').value = timeDifference;
 }
 
-setDefaults();
-calculateTimes();
+
+/*
+  Functions
+*/
+
+// Exit prompt
+//window.onbeforeunload = function() {
+//  return true;
+//};
+
+function setValues(values) {
+  for (var field in fields) {
+    let value = (values[fields[field]] != null) ? values[fields[field]] : '';
+    document.getElementById(fields[field]).value = value;
+  }
+}
+
+function open() {
+  let data = JSON.parse(localStorage.getItem('data'));
+  if (data != null)
+    setValues(data);
+  else 
+    setValues(defaults);
+}
+
+function save() {
+  let data = {};
+  for (var field in fields) {
+    let value = (document.getElementById(fields[field]).value != null) ? document.getElementById(fields[field]).value : '';
+    data[fields[field]] = value;
+  }
+  localStorage.setItem('data', JSON.stringify(data));
+}
+
+function csvExport() {
+  let csvContent = 'data:text/csv;charset=utf-8,';
+
+  let headerRow = fields.join(',');
+  csvContent += headerRow + "\r\n";
+
+  fields.forEach(function(field){
+    let data = document.getElementById(field).value;
+    csvContent += data + ',';
+  }); 
+
+  var encodedUri = encodeURI(csvContent);
+  var link = document.createElement('a');
+  link.setAttribute('href', encodedUri);
+  link.setAttribute('download', 'time.csv');
+  document.body.appendChild(link); // Required for FF
+
+  link.click();
+}
+
+
+/*
+  Init
+*/
 
 var inputs = document.querySelectorAll('input[data-type="time"]');
 for (var input in inputs) {
@@ -78,7 +168,10 @@ for (var button in buttons) {
   }
 }
 
-// Exit prompt
-// window.onbeforeunload = function() {
-//   return true;
-// };
+document.getElementById('btn-new').addEventListener('click', () => setValues(empty));
+document.getElementById('btn-open').addEventListener('click', open);
+document.getElementById('btn-save').addEventListener('click', save);
+document.getElementById('btn-export').addEventListener('click', csvExport);
+
+setValues(defaults);
+calculateTimes();
