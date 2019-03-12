@@ -78,20 +78,20 @@ function createTimeButtons(input) {
 function handleTimeBlur(e) {
   let values = e.target.value.split(':');
 
-  if (values.length === 0) {
-    values[0] = "00";
-    values[1] = "00";
+  if (values.length === 2) {
+    values[0] = values[0].trim().substring(0, 2);
+    values[1] = values[1].trim().substring(0, 2);
+    if (!parseInt(values[0]) || values[0] > 23 || values[0] < 0) values[0] = "00";
+    if (!parseInt(values[1]) || values[1] > 59 || values[1] < 0) values[1] = "00";
   }
   else if (values.length === 1) {
     values[1] = "00";
   }
   else {
-    values[0] = values[0].trim().substring(0, 2);
-    values[1] = values[1].trim().substring(0, 2);
-    if (!parseInt(values[0]) || values[0] > 23 || values[0] < 0) values[0] = "00";
-    if (!parseInt(values[1]) || values[1] > 59 || values[1] < 0) values[0] = "00";
-    e.target.value = moment(values[0] + ':' + values[1], "HH:mm").format('HH:mm');
+    values = ["00", "00"]
   }
+
+  e.target.value = moment(values[0] + ':' + values[1], "HH:mm").format('HH:mm');
 }
 
 function handleTimeKeypress(e) {
