@@ -6,81 +6,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/js/jquery-ui.min.js"></script>
-  <script src="assets/js/moment.min.js"></script>
-
   <link rel="stylesheet" href="assets/css/normalize.css" />
-  <style>
-    html {
-      background: black;
-    }
-    body {
-      display: none;
-    }
-
-    @keyframes disappear {
-      99% {visibility: visible;}
-      100% {visibility: hidden;}
-    }
-
-    @keyframes appear {
-      0% {visibility: hidden;}
-      99% {visibility: hidden;}
-      100% {visibility: visible;}
-    }
-
-    .splash {
-      animation: 2s disappear;
-      animation-fill-mode: forwards;
-    }
-
-    .windows {
-      animation: 2.2s appear;
-      animation-fill-mode: forwards;
-    }
-  </style>
-  <link rel="stylesheet" href="themes/win-classic/win2k.css" id="theme" />
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="themes/win-classic/win9x-16clr.css" id="theme" />
 
   <title>Sakura Time 2000</title>
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
 </head>
 
 <body class="shell" id="shell">
-
-  <div class="desktop-icons" id="desktop-icons">
-  </div>
-
-  <div class="splash" id="sakura-splash"></div>
-
-  <div class="windows">
-
-    <div class="window" id="theme-switcher">
-      <header>Theme Switcher</header>
-      <main>
-        <div class="row">
-          <div class="col">
-            <select id="theme-selector">
-              <option value="win-classic/win9x-16clr" selected>Windows 9x, 16 colors</option>
-              <option value="win-classic/win9x-256clr">Windows 9x, 256 colors</option>
-              <option value="win-classic/win9x-16bit">Windows 9x, High Color 16-bit</option>
-              <option value="win-classic/win9x-32bit">Windows 9x, True Color 32-bit</option>
-              <option value="win-classic/win2k">Windows 2000</option>
-              <option value="win-classic/vaporwave">ウィンドウズ</option>
-            </select>
-          </div>
-        </div>
-      </main>
-    </div>
-
+  <div class="window-manager">
     <div class="window active" id="sakura-time">
-      <header>Sakura Time 2000</header>
-      <main>
+      <div class="window__title">Sakura Time 2000</div>
+      <div class="window__content">
         <div class="menu">
-          <button class="menu-button-new" id="btn-new"></button>
-          <button class="menu-button-open" id="btn-open"></button>
-          <button class="menu-button-save" id="btn-save"></button>
-          <button class="menu-button-export" id="btn-export"></button>
+          <button class="menu__button menu__button--new" id="btn-new"></button>
+          <button class="menu__button menu__button--open" id="btn-open"></button>
+          <button class="menu__button menu__button--save" id="btn-save"></button>
+          <button class="menu__button menu__button--export" id="btn-export"></button>
         </div>
         <div class="well">
           <fieldset>
@@ -89,13 +32,13 @@
               <div class="col">
                 <label>Start</label>
                 <div class="time-input-group">
-                  <input id="start" data-type="time" />
+                  <input class="form__input" id="start" data-type="time" />
                 </div>
               </div>
               <div class="col">
                 <label>End</label>
                 <div class="time-input-group">
-                  <input id="stop" data-type="time" />
+                  <input class="form__input" id="stop" data-type="time" />
                 </div>
               </div>
             </div>
@@ -103,13 +46,13 @@
               <div class="col">
                 <label>Lunch break</label>
                 <div class="time-input-group">
-                  <input id="lunch" data-type="time" />
+                  <input class="form__input" id="lunch" data-type="time" />
                 </div>
               </div>
               <div class="col">
                 <label>Other breaks</label>
                 <div class="time-input-group">
-                  <input id="breaks" data-type="time" />
+                  <input class="form__input" id="breaks" data-type="time" />
                 </div>
               </div>
             </div>
@@ -120,62 +63,62 @@
               <div class="col">
                 <label>Time</label>
                 <div class="time-input-group">
-                  <input id="task1time" data-type="time" />
+                  <input class="form__input" id="task1time" data-type="time" />
                 </div>
               </div>
               <div class="col">
                 <label>Description</label>
-                <input id="task1desc" type="text">
+                <input class="form__input" id="task1desc" type="text">
               </div>
             </div>
             <div class="row">
               <div class="col">
                 <div class="time-input-group">
-                  <input id="task2time" data-type="time" />
+                  <input class="form__input" id="task2time" data-type="time" />
                 </div>
               </div>
               <div class="col">
-                <input id="task2desc" type="text">
+                <input class="form__input" id="task2desc" type="text">
               </div>
             </div>
             <div class="row">
               <div class="col">
                 <div class="time-input-group">
-                  <input id="task3time" data-type="time" />
+                  <input class="form__input" id="task3time" data-type="time" />
                 </div>
               </div>
               <div class="col">
-                <input id="task3desc" type="text">
+                <input class="form__input" id="task3desc" type="text">
               </div>
             </div>
             <div class="row">
               <div class="col">
                 <div class="time-input-group">
-                  <input id="task4time" data-type="time" />
+                  <input class="form__input" id="task4time" data-type="time" />
                 </div>
               </div>
               <div class="col">
-                <input id="task4desc" type="text">
+                <input class="form__input" id="task4desc" type="text">
               </div>
             </div>
             <div class="row">
               <div class="col">
                 <div class="time-input-group">
-                  <input id="task5time" data-type="time" />
+                  <input class="form__input" id="task5time" data-type="time" />
                 </div>
               </div>
               <div class="col">
-                <input id="task5desc" type="text">
+                <input class="form__input" id="task5desc" type="text">
               </div>
             </div>
             <div class="row">
               <div class="col">
                 <div class="time-input-group">
-                  <input id="task6time" data-type="time" />
+                  <input class="form__input" id="task6time" data-type="time" />
                 </div>
               </div>
               <div class="col">
-                <input id="task6desc" type="text">
+                <input class="form__input" id="task6desc" type="text">
               </div>
             </div>
           </fieldset>
@@ -184,38 +127,62 @@
             <div class="row">
               <div class="col">
                 <label class="disabled">Total hours</label>
-                <input id="total" disabled />
+                <input class="form__input" id="total" disabled />
               </div>
               <div class="col">
                 <label class="disabled">Unlogged time</label>
-                <input id="unlogged" disabled />
+                <input class="form__input" id="unlogged" disabled />
               </div>
             </div>
             <div class="row">
               <div class="col">
                 <label class="disabled">Planned hours</label>
                 <div class="time-input-group">
-                  <input id="planned" data-type="time" />
+                  <input class="form__input" id="planned" data-type="time" />
                 </div>
               </div>
               <div class="col">
                 <label class="disabled">Difference</label>
-                <input id="difference" disabled />
+                <input class="form__input" id="difference" disabled />
               </div>
             </div>
           </fieldset>
         </div>
-      </main>
-      <footer>
-        <div class="well" id="statusbar"></div>
-      </footer>
+        <footer>
+          <div class="well" id="statusbar"></div>
+        </footer>
+      </div>
     </div>
-
+    <div class="window window--message-box">
+      <div class="window__title">Test title</div>
+      <div class="window__content">
+        <img src="assets/img/32.png" alt="Sakura Time 2000" class="message-box__icon">
+        <div class="message-box__text">
+          Test message box
+        </div>
+        <div class="message-box__buttons">
+          <button class="form__button">OK</button>
+        </div>
+      </div>
+    </div>
+    <div class="window window--message-box">
+      <div class="window__title"><img src="assets/img/16.png" alt="Sakura Time 2000" class="window__title__icon" />Test
+        title</div>
+      <div class="window__content">
+        <img src="assets/img/32.png" alt="Sakura Time 2000" class="message-box__icon" />
+        <div class="message-box__text">
+          Test message box
+        </div>
+        <div class="message-box__buttons">
+          <button class="form__button">Cancel</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script src="assets/js/shell.js"></script>
+  <script src="assets/js/moment.min.js"></script>
   <script src="assets/js/time2k.js"></script>
-
 </body>
 
 </html>

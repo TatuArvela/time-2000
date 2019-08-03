@@ -1,172 +1,407 @@
-@import 'win-classic-graphics';
+//@import 'win-classic-graphics';
 
-$text:                      rgb(0,0,0) !default;
-$background:                rgb(87,168,168) !default;
-$active:                    rgb(0,0,168) !default;
+/**
+ * Default theme: Win 9x, 16 colors
+ */
 
-$window-text:               rgb(255,255,255) !default;
-$window-active-background:  rgb(0,0,168) !default;
+$window-shades: rgb(255, 255, 255),
+rgb(192, 199, 200),
+rgb(192, 199, 200),
+rgb(135, 136, 143),
+rgb(0, 0, 0) !default;
+$active: rgb(0, 0, 168) !default;
+$background: rgb(87, 168, 168) !default;
 
-$shade0:                    rgb(255,255,255) !default;
-$shade1:                    rgb(192,199,200) !default;
-$shade2:                    rgb(192,199,200) !default;
-$shade3:                    rgb(135,136,143) !default;
-$shade4:                    rgb(0,0,0) !default;
+/* Variables
+   ========================================================================== */
 
+$shell-class-name: shell !default;
+$shell: "."+$shell-class-name !default;
 
-body {
-  image-rendering: -moz-crisp-edges;
-  image-rendering: -webkit-crisp-edges;
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
-}
+$text: nth($window-shades, 5) !default;
+$hyperlinks: $active !default;
 
-*, ::after, ::before {
+$disabled-text: nth($window-shades, 4) !default;
+$selected-text: nth($window-shades, 1) !default;
+$selected-background: $active !default;
+
+$active-window-title-text: nth($window-shades, 1) !default;
+$active-window-title-background: $active !default;
+$inactive-window-title-text: nth($window-shades, 3) !default;
+$inactive-window-title-background: nth($window-shades, 4) !default;
+$window-background: nth($window-shades, 3) !default;
+
+/* Shell
+   ========================================================================== */
+
+#{$shell} *,
+#{$shell} ::after,
+#{$shell} ::before {
   box-sizing: border-box;
   user-select: none;
   -moz-user-select: none;
+  image-rendering: crisp-edges;
+  cursor: inherit;
 }
 
-/*
-  Shell
-*/
-
-.shell {
-  display: block !important;
-
-  width: 100vw;
-  height: 100vh;
-  margin: 0px;
+#{$shell} {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 
   color: $text;
   background: $background;
   font-size: 12px;
   font-family: "Microsoft Sans Serif", sans-serif !important;
-  cursor: url("cursor.png"), auto !important;
+  cursor: url("cursors/default.png"), default !important;
 }
 
-.shell * {
-  cursor:inherit;
+.progress {
+  cursor: url("cursors/progress.png"), progress !important;
 }
 
-
-/*
-  Splash
-*/
-.splash {
-  display: block;
-  height: 247px;
-  width: 400px;
-  background: url("splash.png");
-  position: fixed;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  margin: auto;
+.hidden {
+  visibility: hidden !important
 }
 
+#{$shell}:not(.ready) {
+  @extend .progress;
 
-/* 
-  Window 
-*/
+  >.window-manager {
+    @extend .hidden;
+  }
+}
+
+/* Windows
+   ========================================================================== */
 
 .window {
-  position: fixed !important;
+  display: block;
+  position: absolute;
+
   padding: 2px;
   display: flex;
   flex-direction: column;
 
-  background: $shade2;
-  border-radius: 0px;
-  border-top: 1px solid $shade1;
-  border-left: 1px solid $shade1;
-  border-bottom: 1px solid $shade4;
-  border-right: 1px solid $shade4;
+  background: $window-background;
+  border-radius: 0;
+  border-top: 1px solid nth($window-shades, 1);
+  border-left: 1px solid nth($window-shades, 1);
+  border-bottom: 1px solid nth($window-shades, 4);
+  border-right: 1px solid nth($window-shades, 4);
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-top: 1px solid nth($window-shades, 2);
+    border-left: 1px solid nth($window-shades, 2);
+    border-right: 1px solid nth($window-shades, 5);
+    border-bottom: 1px solid nth($window-shades, 5);
+    pointer-events: none;
+  }
 }
 
-.window:before {
-  pointer-events: none;
-  content: "";
-  position: absolute;
-  z-index: 0;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-
-  border-top: 1px solid $shade0;
-  border-left: 1px solid $shade0;
-  border-bottom: 1px solid $shade3;
-  border-right: 1px solid $shade3;
-}
-
-.window.active {
-  z-index: 1;
-}
-
-.window > header {
-  position: relative;
-  color: $window-text;
-  background: $window-passive-background;
-  font-weight: bold;
-
-  padding: 0px 20px;
-  height: 18px;
-  line-height: 18px;
-}
-
-.window > header:before {
-  content: "";
-  position: absolute;
+.window__title {
   display: block;
+  padding: 4px 3px;
+  height: 21px;
+  background: $inactive-window-title-background;
+  color: $inactive-window-title-text;
+  font-family: "Microsoft Sans Serif", sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: left;
+  user-select: none;
+
+  .active & {
+    background: $active-window-title-background;
+    color: $active-window-title-text;
+  }
+}
+
+.window__title__icon {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+  margin-right: 2px;
   width: 16px;
   height: 16px;
-  left: 1px;
-  top: 1px;
-  background: url("../../favicon.ico");
 }
 
-.window > header:after {
-  content: "";
-  position: absolute;
-  display: block;
-  width: 1px;
-  height: 1px;
-  right: 16px;
-  top: 1px;
-  background: transparent;
-  box-shadow: $graphics-button-close;
+.window__content {
+  padding: 12px;
 }
 
-.window.active > header {
-  background: $window-active-background;
+/**
+ * Message boxes
+ */
+
+.window--message-box {
+  min-height: 115px;
+  min-width: 190px;
+  max-width: 635px;
 }
 
-.window > main {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  margin: 0;
+.message-box__icon {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.message-box__text {
+  margin-top: 6px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.message-box__buttons {
+  margin-top: 17px;
+  text-align: center;
+}
+
+/* Forms
+   ========================================================================== */
+
+.form__input,
+.form__button,
+.form__select {
+  background: nth($window-shades, 1);
+  border-bottom: 1px solid nth($window-shades, 2);
+  border-left: 1px solid nth($window-shades, 5);
+  border-radius: 0;
+  border-right: 1px solid nth($window-shades, 2);
+  border-top: 1px solid nth($window-shades, 5);
+  border: 1px solid gray;
+  box-shadow: 0.5px 0.5px 0 0.5px nth($window-shades, 1), 0 0 0 1px nth($window-shades, 4);
+  color: nth($window-shades, 5);
+  display: inline-block;
+  font-family: "Microsoft Sans Serif", sans-serif;
+  font-size: 13px;
+  margin: 3px 4px;
+  min-height: 13px;
+  outline: none;
+  padding: 1px;
+  user-select: text;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:disabled,
+  &.disabled {
+    color: nth($window-shades, 4) !important;
+    background: nth($window-shades, 3);
+  }
+}
+
+.form__button {
+  margin: 2px;
   padding: 2px 4px;
+  min-height: 23px;
+  min-width: 75px;
+  outline: none;
+  box-shadow: -1px -1px 0 0 nth($window-shades, 1), 0 -1px 0 0 nth($window-shades, 1), -1px 0 0 0 nth($window-shades, 1), 0 0 0 1px nth($window-shades, 5);
+  border-top: 1px solid nth($window-shades, 3);
+  border-left: 1px solid nth($window-shades, 3);
+  border-bottom: 1px solid nth($window-shades, 4);
+  border-right: 1px solid nth($window-shades, 4);
+  background: nth($window-shades, 3);
+  font-family: "Microsoft Sans Serif", sans-serif;
+  user-select: none;
+
+  &:focus,
+  &:active {
+    box-shadow: -1px -1px 0 0 nth($window-shades, 5), 0 -1px 0 0 nth($window-shades, 5), -1px 0 0 0 nth($window-shades, 5), 0 0 0 1px nth($window-shades, 5);
+  }
+
+  &:focus {
+    border-top: 1px solid nth($window-shades, 1);
+    border-left: 1px solid nth($window-shades, 1);
+    border-bottom: 1px solid nth($window-shades, 5);
+    border-right: 1px solid nth($window-shades, 5);
+  }
+
+  &:active {
+    padding-top: 3px;
+    padding-left: 5px;
+    padding-right: 3px;
+    padding-bottom: 1px;
+    border-top: 1px solid nth($window-shades, 5);
+    border-left: 1px solid nth($window-shades, 5);
+    border-bottom: 1px solid nth($window-shades, 1);
+    border-right: 1px solid nth($window-shades, 1);
+    background: nth($window-shades, 3);
+  }
 }
 
+::-moz-selection {
+  color: nth($window-shades, 1);
+  background: $active;
+}
 
-/*
-  Menu
-*/
+::selection {
+  color: nth($window-shades, 1);
+  background: $active;
+}
 
-.window > main > .menu {
+/**
+ * Select
+ */
+
+select,
+.ui-selectmenu-button {
+  padding: 0px 20px 0px 4px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  white-space: nowrap;
+
+  background-image: url("dropdown.png");
+  background-color: nth($window-shades, 1);
+  background-repeat: no-repeat;
+  background-position: bottom right;
+}
+
+select:active,
+.ui-selectmenu-button:active {
+  background-image: url("dropdown-pressed.png");
+}
+
+.ui-selectmenu-text {
+  position: absolute;
+  left: 1px;
+  right: 17px;
+  top: 1px;
+  bottom: 1px;
+  padding-left: 1px;
+}
+
+.ui-selectmenu-menu ul li:hover,
+.ui-selectmenu-button:focus:not(.ui-selectmenu-button-open)>.ui-selectmenu-text {
+  color: nth($window-shades, 1);
+  background: $active;
+  border: 1px dotted #f8fc80;
+}
+
+.ui-selectmenu-menu {
+  visibility: hidden;
+  display: block;
+  width: 200px;
+  border: 1px solid nth($window-shades, 5);
+  background: nth($window-shades, 1);
+}
+
+.ui-selectmenu-menu.ui-selectmenu-open {
+  visibility: visible;
+}
+
+.ui-selectmenu-icon {
+  display: none;
+}
+
+.ui-selectmenu-menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ui-selectmenu-menu ul li {
+  padding: 2px;
+}
+
+.ui-selectmenu-menu ul li:hover {
+  padding: 1px;
+}
+
+/**
+ * Time inputs
+ */
+
+.time-input-group {
+  position: relative;
+  display: block;
+  margin: 3px 2px 3px 4px;
+
+  &.form__input[data-type="time"] {
+    cursor: url("cursor-text.png"), text !important;
+    -moz-appearance: none;
+    margin: 0px;
+    width: calc(100% - 16px);
+
+    &::-webkit-clear-button,
+    &::-webkit-inner-spin-button {
+      display: none;
+    }
+  }
+}
+
+.time-input--increase,
+.time-input--decrease {
+  position: absolute;
+  right: -2px;
+  height: 10px;
+  width: 16px;
+  padding: 0;
+  background: none;
+  border: none;
+  min-height: unset;
+  min-width: unset;
+
+  &:before {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 1px;
+    background: transparent;
+    position: relative;
+    left: -2px;
+    top: -6px;
+  }
+}
+
+.time-input--increase {
+  top: 0px;
+
+  &:before {
+    //box-shadow: $graphics-button-increase;
+  }
+
+  &.active:before {
+    //box-shadow: $graphics-button-increase-active;
+  }
+}
+
+.time-input--decrease {
+  top: 10px;
+
+  &:before {
+    //box-shadow: $graphics-button-decrease;
+  }
+
+  &.active:before {
+    //box-shadow: $graphics-button-decrease-active;
+  }
+}
+
+/* Menu bar
+   ========================================================================== */
+
+.window>main>.menu {
   height: 23px;
   margin: -1px -4px 0px -4px;
   padding: 0px;
-  border-top: 1px solid $shade0;
-  border-left: 1px solid $shade0;
-  border-bottom: 2px solid $shade3;
-  border-right: 1px solid $shade3;
+  border-top: 1px solid nth($window-shades, 1);
+  border-left: 1px solid nth($window-shades, 1);
+  border-bottom: 2px solid nth($window-shades, 4);
+  border-right: 1px solid nth($window-shades, 4);
 }
 
-.window > main > .menu > button {
+.window>main>.menu>button {
   position: relative;
   left: -1px;
   top: -1px;
@@ -178,59 +413,119 @@ body {
   background-repeat: no-repeat;
   background-position: 2px 2px;
   float: left;
+
   &.menu-button-new {
     background-image: url("icon-new.png");
   }
+
   &.menu-button-open {
     background-image: url("icon-open.png");
   }
+
   &.menu-button-save {
     background-image: url("icon-save.png");
   }
+
   &.menu-button-export {
     background-image: url("icon-export.png");
   }
+
   &:hover {
-    border-top: 1px solid $shade0;
-    border-left: 1px solid $shade0;
-    border-bottom: 1px solid $shade3;
-    border-right: 1px solid $shade3;
+    border-top: 1px solid nth($window-shades, 1);
+    border-left: 1px solid nth($window-shades, 1);
+    border-bottom: 1px solid nth($window-shades, 4);
+    border-right: 1px solid nth($window-shades, 4);
   }
+
   &:active {
     background-position: 3px 3px;
-    border-top: 1px solid $shade3;
-    border-left: 1px solid $shade3;
-    border-bottom: 1px solid $shade0;
-    border-right: 1px solid $shade0;
+    border-top: 1px solid nth($window-shades, 4);
+    border-left: 1px solid nth($window-shades, 4);
+    border-bottom: 1px solid nth($window-shades, 1);
+    border-right: 1px solid nth($window-shades, 1);
   }
 }
 
+/* Structure
+   ========================================================================== */
 
-/*
-  Footer
-*/
+.well {
+  margin: 0px -2px 2px -3px;
+  flex-grow: 1;
+  border-top: 1px solid nth($window-shades, 5);
+  border-left: 1px solid nth($window-shades, 5);
+  border-bottom: 1px solid nth($window-shades, 1);
+  border-right: 1px solid nth($window-shades, 1);
+  box-shadow: -1px 0px 0px nth($window-shades, 4);
+}
 
-.window > footer {
+fieldset {
+  position: relative;
+  margin: 12px;
+  border: none;
+  background: transparent;
+  box-shadow:
+    -1px -1px 0 0px nth($window-shades, 4),
+    0 0 0 1px nth($window-shades, 1) inset,
+    0px 0px 0 0px nth($window-shades, 1),
+    -1px -1px 0 1px nth($window-shades, 4) inset;
+  background: none;
+}
+
+legend {
+  padding: 0px 2px;
+  color: nth($window-shades, 5);
+  background: nth($window-shades, 3);
+}
+
+.row {
+  margin: 0 -2px;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 100%;
+}
+
+.col {
+  flex-basis: 0;
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+}
+
+hr {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid nth($window-shades, 4);
+  border-bottom: 1px solid nth($window-shades, 1);
+}
+
+label {
+  display: block;
+  margin: 3px 4px;
+  color: nth($window-shades, 5);
+}
+
+/* Status bar
+   ========================================================================== */
+
+.window>footer {
   margin: -1px;
   display: flex;
 }
 
-.window > footer > .well {
+.window>footer>.well {
   position: relative;
   flex-grow: 1;
   margin: 0px 2px 2px 2px;
   height: 20px;
   padding: 2px;
-  border-top: 1px solid $shade3;
-  border-left: 1px solid $shade3;
-  border-bottom: 1px solid $shade0;
-  border-right: 1px solid $shade0;
+  border-top: 1px solid nth($window-shades, 4);
+  border-left: 1px solid nth($window-shades, 4);
+  border-bottom: 1px solid nth($window-shades, 1);
+  border-right: 1px solid nth($window-shades, 1);
 }
 
-
-/*
-  Resizable
-*/
+/* Resize
+   ========================================================================== */
 
 .ui-resizable-e {
   position: absolute;
@@ -270,7 +565,7 @@ body {
   width: 1px;
   height: 1px;
   background: transparent;
-  box-shadow: $graphics-resize-handle;
+  //box-shadow: $graphics-resize-handle;
 }
 
 .resizable-helper {
@@ -282,276 +577,4 @@ body {
   border-image-repeat: round repeat;
 }
 
-
-/*
-  Window structure
-*/
-
-.well {
-  margin: 0px -2px 2px -3px;
-  flex-grow: 1;
-  border-top: 1px solid $shade4;
-  border-left: 1px solid $shade4;
-  border-bottom: 1px solid $shade0;
-  border-right: 1px solid $shade0;
-  box-shadow: -1px 0px 0px $shade3;
-}
-
-fieldset {
-  z-index: 2;
-  position: relative;
-  margin: 12px;
-  border: none;
-  background: transparent;
-  box-shadow:
-    -1px -1px 0 0px $shade3,
-    0 0 0 1px $shade0 inset,
-    0px 0px 0 0px $shade0,
-    -1px -1px 0 1px $shade3 inset;
-  background: none;
-}
-
-legend {
-  padding: 0px 2px;
-  color: $shade4;
-  background: $shade2;
-}
-
-.row {
-  margin: 0 -2px;
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 100%;
-}
-
-.col {
-  flex-basis: 0;
-  -webkit-box-flex: 1;
-  flex-grow: 1;
-}
-
-hr {
-  margin: 0;
-  padding: 0;
-  border-top: 1px solid $shade3;
-  border-bottom: 1px solid $shade0;
-}
-
-label {
-  display: block;
-  margin: 3px 4px;
-  color: $shade4;
-}
-
-
-/*
-  Inputs
-*/
-
-input,
-select,
-.ui-selectmenu-button {
-  position: relative;
-  width: calc(100% - 6px);
-  height: 19px;
-  display: block;
-  margin: 3px 4px;
-  padding: 1px;
-
-  background: $shade0;
-  color: $shade4;
-  border-radius: 0px;
-  border-top: 1px solid $shade4;
-  border-left: 1px solid $shade4;
-  border-bottom: 1px solid $shade2;
-  border-right: 1px solid $shade2;
-
-  user-select: text;
-  -moz-user-select: text;
-}
-
-input,
-select,
-input:focus,
-select:focus,
-.ui-selectmenu-button {
-  outline: none;
-  box-shadow:
-    0.5px 0.5px 0 0.5px $shade0,
-    0 0 0 1px $shade3;
-}
-
-button,
-button:focus {
-  outline: none;
-}
-
-select,
-.ui-selectmenu-button {
-  padding: 0px 20px 0px 4px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  white-space: nowrap;
-
-  background-image: url("dropdown.png");
-  background-color: $shade0;
-  background-repeat: no-repeat;
-  background-position: bottom right; 
-}
-
-select:active,
-.ui-selectmenu-button:active {
-  background-image: url("dropdown-pressed.png");
-}
-
-.ui-selectmenu-text {
-  position: absolute;
-  left: 1px;
-  right: 17px;
-  top: 1px;
-  bottom: 1px;
-  padding-left: 1px;
-}
-
-.ui-selectmenu-menu ul li:hover,
-.ui-selectmenu-button:focus:not(.ui-selectmenu-button-open) > .ui-selectmenu-text {
-  color: $shade0;
-  background: $active;
-  border: 1px dotted #f8fc80;
-}
-
-.ui-selectmenu-menu {
-  visibility: hidden;
-  display: block;
-  width: 200px;
-  border: 1px solid $shade4;
-  background: $shade0;
-  z-index: 200;
-}
-
-.ui-selectmenu-menu.ui-selectmenu-open {
-  visibility: visible;
-}
-
-.ui-selectmenu-icon {
-  display: none;
-}
-
-.ui-selectmenu-menu ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-.ui-selectmenu-menu ul li {
-  padding: 2px;
-}
-
-.ui-selectmenu-menu ul li:hover {
-  padding: 1px;
-}
-
-input:disabled,
-select:disabled,
-.disabled {
-  color: $shade3 !important;
-  background: $shade2;
-}
-
-::-moz-selection {
-  color: $shade0;
-  background: $active;
-}
-
-::selection {
-  color: $shade0;
-  background: $active;
-}
-
-
-/*
-  Time inputs
-*/
-
-
-input[type="text"],
-input[data-type="time"] {
-  cursor: url("cursor-text.png"), auto !important;
-}
-
-input[data-type="time"] {
-  -moz-appearance: none;
-  margin: 0px;
-  width: calc(100% - 16px);
-}
-
-input[type=time]::-webkit-clear-button,
-input[type=time]::-webkit-inner-spin-button{
-  display: none;
-}
-
-.time-input-group {
-  position: relative;
-  display: block;
-  margin: 3px 2px 3px 4px;
-}
-
-.time-increase,
-.time-decrease {
-  position: absolute;
-  right: -2px;
-  height: 10px;
-  width: 16px;
-  padding: 0;
-
-  background: none;
-  border: none;
-}
-
-.time-increase {
-  top: 0px;
-}
-
-.time-decrease {
-  top: 10px;
-}
-
-.time-increase:before,
-.time-decrease:before {
-  content: '';
-  display: block;
-  width: 1px;
-  height: 1px;
-  background: transparent;
-  position: relative;
-  left: -2px;
-  top: -6px;
-}
-
-.time-increase:before {
-  box-shadow: $graphics-button-increase;
-}
-
-.time-decrease:before {
-  box-shadow: $graphics-button-decrease;
-}
-
-.time-increase.active:before {
-  box-shadow: $graphics-button-increase-active;
-}
-
-.time-decrease.active:before {
-  box-shadow: $graphics-button-decrease-active;
-}
-
-
-/*
-  Window restrictions
-*/
-
-#sakura-time,
-.resizable-helper {
-  min-width: 240px;
-  min-height: 532px;
-}
+@import 'time2k';

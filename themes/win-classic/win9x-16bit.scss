@@ -1,18 +1,15 @@
 ---
 ---
 
-$text:                      rgb(0,0,0);
-$background:                rgb(0,124,120);
-$active:                    rgb(0,0,120);
+$window-shades: rgb(247, 251, 247),
+rgb(216, 220, 216),
+rgb(184,188,184),
+rgb(120,124,120),
+rgb(0,0,0);
+$active: rgb(0,0,120);
+$background: rgb(0,124,120);
 
-$window-text:               rgb(247, 251, 247);
-$window-passive-background: linear-gradient(90deg, rgb(120,124,120), rgb(176,176,176));
-$window-active-background:  linear-gradient(90deg, rgb(0,0,120), rgb(8,128,200));
-
-$shade0:                    rgb(247, 251, 247);
-$shade1:                    rgb(216, 220, 216);
-$shade2:                    rgb(184,188,184);
-$shade3:                    rgb(120,124,120);
-$shade4:                    rgb(0,0,0);
+$inactive-window-title-background: linear-gradient(90deg, rgb(120,124,120), rgb(176,176,176));
+$active-window-title-background: linear-gradient(90deg, rgb(0,0,120), rgb(8,128,200));
 
 @import 'win-classic';

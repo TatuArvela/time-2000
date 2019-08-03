@@ -1,28 +1,7 @@
 html {
   background: black;
 }
-body {
-  display: none;
-}
-
-@keyframes disappear {
-  from {visibility: visible;}
-  to {visibility: hidden;}
-}
-
-@keyframes appear {
-  from {visibility: hidden;}
-  to {visibility: visible;}
-}
 
 .splash {
-  visibility: visible;
-  animation-name: disappear;
-  animation-duration: 10s;
-}
-
-.window {
-  visibility: hidden;
-  animation-name: appear;
-  animation-duration: 10s;
+  animation: 2s hide;
 }

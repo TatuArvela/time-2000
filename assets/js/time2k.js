@@ -1,6 +1,5 @@
-/*
-  Sakura Time 2000
-*/
+/* Sakura Time 2000
+   ========================================================================== */
 
 const fields = [
   'start',
@@ -26,37 +25,126 @@ const fields = [
 ];
 
 const empty = {
-  start:      '00:00',
-  lunch:      '00:00',
-  stop:       '00:00',
-  breaks:     '00:00',
-  task1time:  '00:00',
-  task2time:  '00:00',
-  task3time:  '00:00',
-  task4time:  '00:00',
-  task5time:  '00:00',
-  task6time:  '00:00',
-  planned:    '00:00'
+  start: '00:00',
+  lunch: '00:00',
+  stop: '00:00',
+  breaks: '00:00',
+  task1time: '00:00',
+  task2time: '00:00',
+  task3time: '00:00',
+  task4time: '00:00',
+  task5time: '00:00',
+  task6time: '00:00',
+  planned: '00:00'
 }
 
 const defaults = {
-  start:      '08:30',
-  lunch:      '00:30',
-  stop:       '16:30',
-  breaks:     '00:00',
-  task1time:  '00:00',
-  task2time:  '00:00',
-  task3time:  '00:00',
-  task4time:  '00:00',
-  task5time:  '00:00',
-  task6time:  '00:00',
-  planned:    '07:30'
+  start: '08:30',
+  lunch: '00:30',
+  stop: '16:30',
+  breaks: '00:00',
+  task1time: '00:00',
+  task2time: '00:00',
+  task3time: '00:00',
+  task4time: '00:00',
+  task5time: '00:00',
+  task6time: '00:00',
+  planned: '07:30'
 }
 
+/* Time inputs
+   ========================================================================== */
 
-/*
-  Time calculations
-*/
+function handleTimeButtonClick(eventTarget) {
+  let [method, target] = eventTarget.split("-");
+  document.getElementById(target).focus();
+  let activeInput = document.activeElement;
+  if (activeInput.getAttribute('id') != target) {
+    document.activeElement = document.getElementById(target);
+  }
+  let keyCode = (method == "dec") ? 40 : 38;
+  let keypress = document.createEvent("keypress");
+  keypress.which = keyCode;
+  keypress.keyCode = keyCode;
+  activeInput.dispatchEvent(keypress);
+}
+
+function createTimeButtons(input) {
+  const increase = document.createElement('button');
+  increase.setAttribute('class', 'form__button time-input--increase');
+  increase.setAttribute('id', 'inc-' + input.getAttribute('id'));
+  increase.setAttribute('tabIndex', '-1');
+  increase.addEventListener('mousedown', function (event) {
+    event.preventDefault();
+    event.target.classList.add('active');
+    handleTimeButtonClick(event.target.getAttribute('id'));
+  });
+  increase.addEventListener('mouseup', function (event) {
+    event.target.classList.remove('active');
+  });
+
+  const decrease = document.createElement('button');
+  decrease.setAttribute('class', 'form__button time-input--decrease');
+  decrease.setAttribute('id', 'dec-' + input.getAttribute('id'));
+  decrease.setAttribute('tabIndex', '-1');
+  decrease.addEventListener('mousedown', function (event) {
+    event.preventDefault();
+    event.target.classList.add('active');
+    handleTimeButtonClick(event.target.getAttribute('id'));
+  });
+  decrease.addEventListener('mouseup', function (event) {
+    event.target.classList.remove('active');
+  });
+
+  input.after(decrease);
+  input.after(increase);
+}
+
+function handleTimeBlur(e) {
+  let values = e.target.value.split(':');
+
+  if (values.length === 2) {
+    values[0] = values[0].trim().substring(0, 2);
+    values[1] = values[1].trim().substring(0, 2);
+    if (!parseInt(values[0]) || values[0] > 23 || values[0] < 0) values[0] = "00";
+    if (!parseInt(values[1]) || values[1] > 59 || values[1] < 0) values[1] = "00";
+  }
+ else if (values.length === 1) {
+    values[1] = "00";
+  }
+ else {
+    values = ["00", "00"]
+  }
+
+  e.target.value = moment(values[0] + ':' + values[1], "HH:mm").format('HH:mm');
+}
+
+function handleTimeKeypress(e) {
+  if (e.keyCode == 38 || e.keyCode == 40) {
+    let start = document.activeElement.selectionStart;
+    let end = document.activeElement.selectionEnd;
+
+    let time = moment(e.target.value, 'HH:mm');
+
+    let unit = (end < 3) ? 'hours' : 'minutes';
+    (e.keyCode == 38) ? time.add(1, unit): time.subtract(1, unit);
+    e.target.value = time.format('HH:mm');
+
+    document.activeElement.setSelectionRange(start, end);
+    e.preventDefault();
+  }
+}
+
+var timeInputs = document.querySelectorAll('input[data-type="time"]');
+for (let i = 0; i < timeInputs.length; i++) {
+  createTimeButtons(timeInputs[i]);
+  timeInputs[i].onblur = handleTimeBlur;
+  timeInputs[i].onkeydown = handleTimeKeypress;
+  timeInputs[i].onkeypress = handleTimeKeypress;
+}
+
+/* Time calculations
+   ========================================================================== */
 
 function getValue(id) {
   var value = document.getElementById(id).value;
@@ -92,10 +180,8 @@ function calculateTimes() {
   document.getElementById('difference').value = timeDifference;
 }
 
-
-/*
-  Functions
-*/
+/* Functions
+   ========================================================================== */
 
 // Exit prompt
 //window.onbeforeunload = function() {
@@ -113,7 +199,7 @@ function open() {
   let data = JSON.parse(localStorage.getItem('data'));
   if (data != null)
     setValues(data);
-  else 
+  else
     setValues(defaults);
 }
 
@@ -132,10 +218,10 @@ function csvExport() {
   let headerRow = fields.join(',');
   csvContent += headerRow + "\r\n";
 
-  fields.forEach(function(field){
+  fields.forEach(function (field) {
     let data = document.getElementById(field).value;
     csvContent += data + ',';
-  }); 
+  });
 
   var encodedUri = encodeURI(csvContent);
   var link = document.createElement('a');
@@ -146,15 +232,20 @@ function csvExport() {
   link.click();
 }
 
+/* Initialization
+   ========================================================================== */
 
-/*
-  Init
-*/
+let splash = document.createElement("div");
+splash.classList.add("splash");
+document.querySelector("body").append(splash);
+setTimeout(() => {
+  splash.remove();
+}, 2200);
 
 var inputs = document.querySelectorAll('input[data-type="time"]');
 for (var input in inputs) {
   if (inputs[input].addEventListener != null) {
-    inputs[input].addEventListener('keyup', function(e) {
+    inputs[input].addEventListener('keyup', function (e) {
       calculateTimes(e);
     });
   }
@@ -162,7 +253,7 @@ for (var input in inputs) {
 var buttons = document.querySelectorAll('time-button');
 for (var button in buttons) {
   if (buttons[button].addEventListener != null) {
-    buttons[button].addEventListener('click', function(e) {
+    buttons[button].addEventListener('click', function (e) {
       calculateTimes(e);
     });
   }
