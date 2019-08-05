@@ -1,0 +1,38 @@
+@import "normalize.css";
+
+html {
+  background: black;
+}
+
+.splash {
+  display: block;
+  height: 247px;
+  width: 400px;
+  background: url("graphics/splash.png");
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin: auto;
+  animation: 2s hide;
+}
+
+/* #sakura-time,
+.resizable-helper {
+  min-width: 240px;
+  min-height: 532px;
+} */
+
+.time2k__button--new {
+  background-image: url("icons/new.png");
+}
+.time2k__button--open {
+  background-image: url("icons/open.png");
+}
+.time2k__button--save {
+  background-image: url("icons/save.png");
+}
+.time2k__button--export {
+  background-image: url("icons/export.png");
+}

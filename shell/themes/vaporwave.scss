@@ -1,27 +1,18 @@
----
----
-
-$text: rgb(0, 0, 0);
+$window-shades: rgb(255, 255, 255),
+rgb(253, 181, 218),
+rgb(253, 181, 218),
+rgb(164, 81, 123),
+rgb(164, 81, 123);
 $background: url("https://i.redd.it/k4o8nz5vfiyy.gif");
-$active: rgb(10, 36, 106);
 
-$window-text: rgb(255, 255, 255);
-$window-passive-background: gray;
-$window-active-background: linear-gradient(90deg, rgb(111, 174, 211), rgb(29, 203, 175));
-$window-active-background: linear-gradient(90deg, #ff6ad5, #c774e8, #ad8cff, #8795e8, #94d0ff);
+$active-window-title-background: linear-gradient(90deg, #ff6ad5, #c774e8, #ad8cff, #8795e8, #94d0ff);
 
-$shade0: rgb(255, 255, 255);
-$shade1: rgb(253, 181, 218);
-$shade2: rgb(253, 181, 218);
-$shade3: rgb(164, 81, 123);
-$shade4: rgb(164, 81, 123);
-
-@import 'win-classic';
+@import './_win-classic';
 @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono');
 
 .shell {
   background-size: 100% 100%;
-  cursor: url("cursor-aesthetic.png"), auto !important;
+  cursor: url("../graphics/cursor-aesthetic.png"), auto !important;
 }
 
 .window {
@@ -35,7 +26,7 @@ $shade4: rgb(164, 81, 123);
   -moz-animation: Vaporwave 1s linear infinite;
   animation: Vaporwave 1s linear infinite;
 }
-.window > header {
+.window > .window__title {
   transition: background 1s;
 }
 

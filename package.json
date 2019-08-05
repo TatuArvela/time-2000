@@ -1,0 +1,44 @@
+{
+  "name": "Sakura-Time-2000",
+  "version": "1.0.0",
+  "description": "Sakura Time 2000",
+  "scripts": {
+    "build": "parcel build index.html shell/themes/*",
+    "dev": "parcel index.html shell/themes/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TatuArvela/Sakura-Time-2000.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TatuArvela/Sakura-Time-2000/issues"
+  },
+  "homepage": "https://github.com/TatuArvela/Sakura-Time-2000#readme",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.3",
+    "parcel-plugin-eslint": "^1.0.7",
+    "sass": "^1.22.9"
+  },
+  "dependencies": {
+    "eslint": "^6.1.0",
+    "moment": "^2.24.0",
+    "normalize.css": "^8.0.1"
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": 6
+    },
+    "rules": {
+      "brace-style": [
+        "error",
+        "stroustrup",
+        {
+          "allowSingleLine": true
+        }
+      ]
+    }
+  }
+}

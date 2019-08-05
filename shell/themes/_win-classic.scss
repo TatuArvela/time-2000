@@ -54,11 +54,11 @@ $window-background: nth($window-shades, 3) !default;
   background: $background;
   font-size: 12px;
   font-family: "Microsoft Sans Serif", sans-serif !important;
-  cursor: url("cursors/default.png"), default !important;
+  cursor: url("../cursors/default.png"), default !important;
 }
 
 .progress {
-  cursor: url("cursors/progress.png"), progress !important;
+  cursor: url("../cursors/progress.png"), progress !important;
 }
 
 .hidden {
@@ -73,50 +73,65 @@ $window-background: nth($window-shades, 3) !default;
   }
 }
 
+.window-manager {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+
 /* Windows
    ========================================================================== */
 
+$window-padding: 2px;
 .window {
-  display: block;
-  position: absolute;
-
-  padding: 2px;
+  background: $window-background;
+  border-bottom: 1px solid nth($window-shades, 4);
+  border-left: 1px solid nth($window-shades, 1);
+  border-radius: 0;
+  border-right: 1px solid nth($window-shades, 4);
+  border-top: 1px solid nth($window-shades, 1);
+  margin: 1px;
   display: flex;
   flex-direction: column;
-
-  background: $window-background;
-  border-radius: 0;
-  border-top: 1px solid nth($window-shades, 1);
-  border-left: 1px solid nth($window-shades, 1);
-  border-bottom: 1px solid nth($window-shades, 4);
-  border-right: 1px solid nth($window-shades, 4);
+  padding: $window-padding;
+  position: absolute;
 
   &:before {
-    content: "";
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    border-top: 1px solid nth($window-shades, 2);
+    border-bottom: 1px solid nth($window-shades, 5);
     border-left: 1px solid nth($window-shades, 2);
     border-right: 1px solid nth($window-shades, 5);
-    border-bottom: 1px solid nth($window-shades, 5);
+    border-top: 1px solid nth($window-shades, 2);
+    bottom: -2px;
+    content: "";
+    left: -2px;
     pointer-events: none;
+    position: absolute;
+    right: -2px;
+    top: -2px;
   }
 }
 
+$window-title-height: 18px;
+$window-title-margin-bottom: 1px;
+$window-title-icon-resolution: 16px;
 .window__title {
-  display: block;
-  padding: 4px 3px;
-  height: 21px;
   background: $inactive-window-title-background;
   color: $inactive-window-title-text;
+  display: block;
   font-family: "Microsoft Sans Serif", sans-serif;
   font-size: 12px;
   font-weight: bold;
+  height: $window-title-height;
+  padding: 4px 3px;
+  margin-bottom: $window-title-margin-bottom;
   text-align: left;
   user-select: none;
+  overflow: hidden;
+
+  &--has-icon {
+    padding-left: calc(#{$window-title-icon-resolution} + 2px + 2px);
+  }
 
   .active & {
     background: $active-window-title-background;
@@ -127,15 +142,20 @@ $window-background: nth($window-shades, 3) !default;
 .window__title__icon {
   display: inline-block;
   vertical-align: middle;
-  position: relative;
-  top: -1px;
+  position: absolute;
+  top: calc(#{$window-padding} + 1px);
+  left: calc(#{$window-padding} + 2px);
   margin-right: 2px;
   width: 16px;
   height: 16px;
 }
 
 .window__content {
-  padding: 12px;
+  overflow: hidden;
+  bottom: $window-padding;
+  top: calc(#{$window-title-height} + #{$window-padding} + #{$window-title-margin-bottom});
+  right: $window-padding;
+  left: $window-padding;
 }
 
 /**
@@ -143,25 +163,31 @@ $window-background: nth($window-shades, 3) !default;
  */
 
 .window--message-box {
+  max-width: 635px;
   min-height: 115px;
   min-width: 190px;
-  max-width: 635px;
-}
+  & .window__content {
+    padding: 12px;
+  }
 
-.message-box__icon {
-  display: inline-block;
-  vertical-align: top;
-}
-
-.message-box__text {
-  margin-top: 6px;
-  display: inline-block;
-  vertical-align: top;
-}
-
-.message-box__buttons {
-  margin-top: 17px;
-  text-align: center;
+  .message-box__icon {
+    display: inline-block;
+    vertical-align: top;
+  }
+  
+  .message-box__text {
+    display: inline-block;
+    margin-top: 6px;
+    vertical-align: top;
+  }
+  
+  .message-box__buttons {
+    margin-top: 17px;
+    text-align: center;
+    > .form__button {
+      display: inline-block;
+    }
+  }
 }
 
 /* Forms
@@ -176,12 +202,11 @@ $window-background: nth($window-shades, 3) !default;
   border-radius: 0;
   border-right: 1px solid nth($window-shades, 2);
   border-top: 1px solid nth($window-shades, 5);
-  border: 1px solid gray;
   box-shadow: 0.5px 0.5px 0 0.5px nth($window-shades, 1), 0 0 0 1px nth($window-shades, 4);
   color: nth($window-shades, 5);
-  display: inline-block;
+  display: block;
   font-family: "Microsoft Sans Serif", sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   margin: 3px 4px;
   min-height: 13px;
   outline: none;
@@ -197,6 +222,11 @@ $window-background: nth($window-shades, 3) !default;
     color: nth($window-shades, 4) !important;
     background: nth($window-shades, 3);
   }
+}
+
+.form__input {
+  height: 18px;
+  cursor: url("../cursors/text.png"), text;
 }
 
 .form__button {
@@ -235,7 +265,6 @@ $window-background: nth($window-shades, 3) !default;
     border-left: 1px solid nth($window-shades, 5);
     border-bottom: 1px solid nth($window-shades, 1);
     border-right: 1px solid nth($window-shades, 1);
-    background: nth($window-shades, 3);
   }
 }
 
@@ -261,7 +290,7 @@ select,
   appearance: none;
   white-space: nowrap;
 
-  background-image: url("dropdown.png");
+  //background-image: url("dropdown.png");
   background-color: nth($window-shades, 1);
   background-repeat: no-repeat;
   background-position: bottom right;
@@ -269,7 +298,7 @@ select,
 
 select:active,
 .ui-selectmenu-button:active {
-  background-image: url("dropdown-pressed.png");
+  //background-image: url("dropdown-pressed.png");
 }
 
 .ui-selectmenu-text {
@@ -322,13 +351,12 @@ select:active,
  * Time inputs
  */
 
-.time-input-group {
+.form__time-input-group {
   position: relative;
   display: block;
   margin: 3px 2px 3px 4px;
 
-  &.form__input[data-type="time"] {
-    cursor: url("cursor-text.png"), text !important;
+  .form__input[data-type="time"] {
     -moz-appearance: none;
     margin: 0px;
     width: calc(100% - 16px);
@@ -340,123 +368,112 @@ select:active,
   }
 }
 
-.time-input--increase,
-.time-input--decrease {
+.form__time-input--increase,
+.form__time-input--decrease {
   position: absolute;
-  right: -2px;
-  height: 10px;
-  width: 16px;
+  right: 0px;
+  height: 7px;
+  width: 14px;
   padding: 0;
+  margin: 0;
   background: none;
-  border: none;
   min-height: unset;
   min-width: unset;
-
-  &:before {
-    content: '';
-    display: block;
-    width: 1px;
-    height: 1px;
-    background: transparent;
-    position: relative;
-    left: -2px;
-    top: -6px;
-  }
-}
-
-.time-input--increase {
-  top: 0px;
-
-  &:before {
-    //box-shadow: $graphics-button-increase;
-  }
-
-  &.active:before {
-    //box-shadow: $graphics-button-increase-active;
-  }
-}
-
-.time-input--decrease {
-  top: 10px;
-
-  &:before {
-    //box-shadow: $graphics-button-decrease;
-  }
-
-  &.active:before {
-    //box-shadow: $graphics-button-decrease-active;
-  }
-}
-
-/* Menu bar
-   ========================================================================== */
-
-.window>main>.menu {
-  height: 23px;
-  margin: -1px -4px 0px -4px;
-  padding: 0px;
+  box-shadow: -1px -1px 0 0 nth($window-shades, 3), 0 -1px 0 0 nth($window-shades, 3), -1px 0 0 0 nth($window-shades, 3), 0 0 0 1px nth($window-shades, 5);
   border-top: 1px solid nth($window-shades, 1);
   border-left: 1px solid nth($window-shades, 1);
-  border-bottom: 2px solid nth($window-shades, 4);
+  border-bottom: 1px solid nth($window-shades, 4);
   border-right: 1px solid nth($window-shades, 4);
-}
-
-.window>main>.menu>button {
-  position: relative;
-  left: -1px;
-  top: -1px;
-  height: 22px;
-  width: 22px;
-  margin-right: 0px;
-  border: 1px solid transparent;
-  background-color: transparent;
+  background-position: 4px 1px;
   background-repeat: no-repeat;
-  background-position: 2px 2px;
-  float: left;
-
-  &.menu-button-new {
-    background-image: url("icon-new.png");
-  }
-
-  &.menu-button-open {
-    background-image: url("icon-open.png");
-  }
-
-  &.menu-button-save {
-    background-image: url("icon-save.png");
-  }
-
-  &.menu-button-export {
-    background-image: url("icon-export.png");
-  }
-
-  &:hover {
-    border-top: 1px solid nth($window-shades, 1);
-    border-left: 1px solid nth($window-shades, 1);
-    border-bottom: 1px solid nth($window-shades, 4);
-    border-right: 1px solid nth($window-shades, 4);
-  }
 
   &:active {
-    background-position: 3px 3px;
-    border-top: 1px solid nth($window-shades, 4);
-    border-left: 1px solid nth($window-shades, 4);
-    border-bottom: 1px solid nth($window-shades, 1);
-    border-right: 1px solid nth($window-shades, 1);
+    padding-top: 3px;
+    padding-left: 5px;
+    padding-right: 3px;
+    padding-bottom: 1px;
+    box-shadow: -1px -1px 0 0 nth($window-shades, 4), 0 -1px 0 0 nth($window-shades, 4), -1px 0 0 0 nth($window-shades, 4), 0 0 0 1px nth($window-shades, 1);
+    border-top: 1px solid nth($window-shades, 5);
+    border-left: 1px solid nth($window-shades, 5);
+    border-bottom: 1px solid nth($window-shades, 3);
+    border-right: 1px solid nth($window-shades, 3);
+    background-position: 5px 2px;
   }
+}
+
+.form__time-input--increase {
+  top: 0px;
+  background-image: url("../graphics/arrow-up-tiny.png");
+}
+
+.form__time-input--decrease {
+  top: 9px;
+  background-image: url("../graphics/arrow-down-tiny.png");
+}
+
+/* Toolbar
+   ========================================================================== */
+
+.toolbar {
+  display: flex;
+  height: 26px;
+  border-top: 1px solid nth($window-shades, 1);
+  border-left: 1px solid nth($window-shades, 1);
+  border-bottom: 1px solid nth($window-shades, 4);
+  border-right: 1px solid nth($window-shades, 4);
+  > .toolbar__button {
+    position: relative;
+    height: 22px;
+    width: 23px;
+    margin-top: 1px;
+    border: 1px solid transparent;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: 2px 2px;
+    display: inline-block;
+
+    &:hover {
+      border-top: 1px solid nth($window-shades, 1);
+      border-left: 1px solid nth($window-shades, 1);
+      border-bottom: 1px solid nth($window-shades, 4);
+      border-right: 1px solid nth($window-shades, 4);
+      outline: none;
+    }
+
+    &:active {
+      background-position: 3px 3px;
+      border-top: 1px solid nth($window-shades, 4);
+      border-left: 1px solid nth($window-shades, 4);
+      border-bottom: 1px solid nth($window-shades, 1);
+      border-right: 1px solid nth($window-shades, 1);
+      outline: none;
+    }
+  }
+}
+
+.handle {
+  display: inline-block;
+  width: 3px;
+  height: calc(100% - 2px - 2px);
+  margin: 2px;
+  border-top: 1px solid nth($window-shades, 1);
+  border-left: 1px solid nth($window-shades, 1);
+  border-bottom: 1px solid nth($window-shades, 4);
+  border-right: 1px solid nth($window-shades, 4);
 }
 
 /* Structure
    ========================================================================== */
 
 .well {
-  margin: 0px -2px 2px -3px;
   flex-grow: 1;
+  margin-top: 1px;
+  margin-left: 1px;
   border-top: 1px solid nth($window-shades, 5);
   border-left: 1px solid nth($window-shades, 5);
   border-bottom: 1px solid nth($window-shades, 1);
   border-right: 1px solid nth($window-shades, 1);
-  box-shadow: -1px 0px 0px nth($window-shades, 4);
+  box-shadow: -1px -1px 0px 1px nth($window-shades, 4);
 }
 
 fieldset {
@@ -482,7 +499,6 @@ legend {
   margin: 0 -2px;
   display: flex;
   flex-wrap: wrap;
-  max-width: 100%;
 }
 
 .col {
@@ -502,32 +518,46 @@ label {
   display: block;
   margin: 3px 4px;
   color: nth($window-shades, 5);
+  &.disabled {
+    color: nth($window-shades, 4) !important;
+  }
 }
 
 /* Status bar
    ========================================================================== */
 
-.window>footer {
-  margin: -1px;
+.status-bar {
   display: flex;
-}
-
-.window>footer>.well {
-  position: relative;
-  flex-grow: 1;
-  margin: 0px 2px 2px 2px;
-  height: 20px;
-  padding: 2px;
-  border-top: 1px solid nth($window-shades, 4);
-  border-left: 1px solid nth($window-shades, 4);
-  border-bottom: 1px solid nth($window-shades, 1);
-  border-right: 1px solid nth($window-shades, 1);
+  margin-top: 2px;
+  .well {
+    position: relative;
+    flex-grow: 1;
+    margin-top: 1px;
+    height: 20px;
+    padding: 2px;
+    border-top: 1px solid nth($window-shades, 4);
+    border-left: 1px solid nth($window-shades, 4);
+    border-bottom: 1px solid nth($window-shades, 1);
+    border-right: 1px solid nth($window-shades, 1);
+    box-shadow: none;
+  }
 }
 
 /* Resize
    ========================================================================== */
 
-.ui-resizable-e {
+$graphics-resize-handle: 0px 12px nth($window-shades, 3),1px 12px nth($window-shades, 3),2px 12px nth($window-shades, 3),3px 12px nth($window-shades, 3),4px 12px nth($window-shades, 3),5px 12px nth($window-shades, 3),6px 12px nth($window-shades, 3),7px 12px nth($window-shades, 3),8px 12px nth($window-shades, 3),9px 12px nth($window-shades, 3),10px 12px nth($window-shades, 3),11px 12px nth($window-shades, 3),12px 12px nth($window-shades, 3),12px 11px nth($window-shades, 3),12px 10px nth($window-shades, 3),12px 9px nth($window-shades, 3),12px 8px nth($window-shades, 3),12px 7px nth($window-shades, 3),12px 6px nth($window-shades, 3),12px 5px nth($window-shades, 3),12px 4px nth($window-shades, 3),12px 3px nth($window-shades, 3),12px 2px nth($window-shades, 3),12px 1px nth($window-shades, 3),12px 0px nth($window-shades, 3),11px 11px nth($window-shades, 3),7px 11px nth($window-shades, 3),8px 10px nth($window-shades, 3),9px 9px nth($window-shades, 3),10px 8px nth($window-shades, 3),11px 7px nth($window-shades, 3),3px 11px nth($window-shades, 3),4px 10px nth($window-shades, 3),5px 9px nth($window-shades, 3),6px 8px nth($window-shades, 3),7px 7px nth($window-shades, 3),8px 6px nth($window-shades, 3),9px 5px nth($window-shades, 3),10px 4px nth($window-shades, 3),11px 3px nth($window-shades, 3),0px 11px nth($window-shades, 1),1px 10px nth($window-shades, 1),2px 9px nth($window-shades, 1),3px 8px nth($window-shades, 1),4px 7px nth($window-shades, 1),5px 6px nth($window-shades, 1),6px 5px nth($window-shades, 1),7px 4px nth($window-shades, 1),8px 3px nth($window-shades, 1),9px 2px nth($window-shades, 1),10px 1px nth($window-shades, 1),11px 0px nth($window-shades, 1),9px 11px nth($window-shades, 4),10px 11px nth($window-shades, 4),10px 10px nth($window-shades, 4),11px 10px nth($window-shades, 4),11px 9px nth($window-shades, 4),1px 11px nth($window-shades, 4),2px 11px nth($window-shades, 4),2px 10px nth($window-shades, 4),3px 10px nth($window-shades, 4),3px 9px nth($window-shades, 4),4px 9px nth($window-shades, 4),4px 8px nth($window-shades, 4),5px 8px nth($window-shades, 4),5px 7px nth($window-shades, 4),6px 7px nth($window-shades, 4),6px 6px nth($window-shades, 4),7px 6px nth($window-shades, 4),7px 5px nth($window-shades, 4),8px 5px nth($window-shades, 4),8px 4px nth($window-shades, 4),9px 4px nth($window-shades, 4),9px 3px nth($window-shades, 4),10px 3px nth($window-shades, 4),10px 2px nth($window-shades, 4),11px 2px nth($window-shades, 4),11px 1px nth($window-shades, 4),5px 11px nth($window-shades, 4),6px 11px nth($window-shades, 4),6px 10px nth($window-shades, 4),7px 10px nth($window-shades, 4),8px 9px nth($window-shades, 4),8px 8px nth($window-shades, 4),9px 8px nth($window-shades, 4),9px 7px nth($window-shades, 4),10px 7px nth($window-shades, 4),10px 6px nth($window-shades, 4),11px 6px nth($window-shades, 4),11px 5px nth($window-shades, 4),4px 11px nth($window-shades, 1),5px 10px nth($window-shades, 1),6px 9px nth($window-shades, 1),7px 9px nth($window-shades, 4),7px 8px nth($window-shades, 1),8px 7px nth($window-shades, 1),9px 6px nth($window-shades, 1),10px 5px nth($window-shades, 1),11px 4px nth($window-shades, 1),8px 11px nth($window-shades, 1),9px 10px nth($window-shades, 1),10px 9px nth($window-shades, 1),11px 8px nth($window-shades, 1);
+
+.resize-handle {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  right: 13px;
+  bottom: 13px;
+  box-shadow: $graphics-resize-handle;
+}
+
+/* .ui-resizable-e {
   position: absolute;
   width: 4px;
   height: 100%;
@@ -535,7 +565,7 @@ label {
   top: 0;
   bottom: 0;
   display: block;
-  cursor: url("cursor-resize-e.png") 8 0, auto !important;
+  cursor: url("../cursors/e-resize.png") 8 0, auto !important;
 }
 
 .ui-resizable-s {
@@ -546,7 +576,7 @@ label {
   left: 0;
   right: 0;
   display: block;
-  cursor: url("cursor-resize-s.png") 0 8, auto !important;
+  cursor: url("../cursors/s-resize.png") 0 8, auto !important;
 }
 
 .ui-resizable-se {
@@ -556,25 +586,15 @@ label {
   bottom: 0px;
   right: 0px;
   display: block;
-  cursor: url("cursor-resize-se.png") 8 8, auto !important;
-}
-
-.ui-resizable-se:before {
-  content: '';
-  display: block;
-  width: 1px;
-  height: 1px;
-  background: transparent;
-  //box-shadow: $graphics-resize-handle;
+  cursor: url("../cursors/se-resize.png") 8 8, auto !important;
 }
 
 .resizable-helper {
   display: block;
   border: 30px solid;
-  border-image-source: url("resize-border.png");
+  border-image-source: url("../graphics/resize-border.png");
   border-image-slice: 4;
   border-image-width: 4px 4px;
   border-image-repeat: round repeat;
 }
-
-@import 'time2k';
+ */
