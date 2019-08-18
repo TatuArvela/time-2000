@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Sakura Time 2000",
   "scripts": {
-    "build": "parcel build index.html shell/themes/*",
-    "dev": "parcel index.html shell/themes/*"
+    "build": "parcel build index.html node_modules/html5-win-classic-shell/themes/*",
+    "dev": "parcel index.html node_modules/html5-win-classic-shell/themes/*"
   },
   "repository": {
     "type": "git",
@@ -25,7 +25,8 @@
   "dependencies": {
     "eslint": "^6.1.0",
     "moment": "^2.24.0",
-    "normalize.css": "^8.0.1"
+    "normalize.css": "^8.0.1",
+    "html5-win-classic-shell": "TatuArvela/html5-win-classic-shell"
   },
   "eslintConfig": {
     "parserOptions": {
