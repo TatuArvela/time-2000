@@ -1,5 +1,5 @@
 {
-  "name": "Sakura-Time-2000",
+  "name": "time-2000",
   "version": "1.0.0",
   "description": "Sakura Time 2000",
   "scripts": {
@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TatuArvela/Sakura-Time-2000.git"
+    "url": "git+https://github.com/TatuArvela/Time-2000.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/TatuArvela/Sakura-Time-2000/issues"
+    "url": "https://github.com/TatuArvela/Time-2000/issues"
   },
-  "homepage": "https://github.com/TatuArvela/Sakura-Time-2000#readme",
+  "homepage": "https://github.com/TatuArvela/Time-2000#readme",
   "devDependencies": {
     "parcel-bundler": "^1.12.3",
     "parcel-plugin-eslint": "^1.0.7",
