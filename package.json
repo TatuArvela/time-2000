@@ -30,7 +30,8 @@
   },
   "eslintConfig": {
     "parserOptions": {
-      "ecmaVersion": 6
+      "ecmaVersion": 6,
+      "sourceType": "module"
     },
     "rules": {
       "brace-style": [

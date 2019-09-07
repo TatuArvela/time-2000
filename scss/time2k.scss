@@ -8,7 +8,7 @@ html {
   display: block;
   height: 247px;
   width: 400px;
-  background: url("graphics/splash.png");
+  background: url("../img/splash.png");
   position: fixed;
   top: 0px;
   bottom: 0px;
@@ -25,14 +25,17 @@ html {
 } */
 
 .time2k__button--new {
-  background-image: url("icons/new.png");
+  background-image: url("../img/icons/new.png");
 }
+
 .time2k__button--open {
-  background-image: url("icons/open.png");
+  background-image: url("../img/icons/open.png");
 }
+
 .time2k__button--save {
-  background-image: url("icons/save.png");
+  background-image: url("../img/icons/save.png");
 }
+
 .time2k__button--export {
-  background-image: url("icons/export.png");
+  background-image: url("../img/icons/export.png");
 }
