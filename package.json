@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Sakura Time 2000",
   "scripts": {
-    "build": "parcel build index.html node_modules/html5-win-classic-shell/themes/*",
-    "dev": "parcel index.html node_modules/html5-win-classic-shell/themes/*"
+    "build": "parcel build index.html node_modules/html5-shell/themes/*",
+    "dev": "parcel index.html node_modules/html5-shell/themes/*"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,9 @@
     "url": "https://github.com/TatuArvela/Time-2000/issues"
   },
   "homepage": "https://github.com/TatuArvela/Time-2000#readme",
+  "browserslist": [
+    "last 1 Chrome versions"
+  ],
   "devDependencies": {
     "parcel-bundler": "^1.12.3",
     "parcel-plugin-eslint": "^1.0.7",
