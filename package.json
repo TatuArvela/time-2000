@@ -1,49 +1,63 @@
 {
+  "//0": [
+    "-------------------------------------------------------------------------",
+    "PACKAGE PROPERTIES"
+  ],
   "name": "time-2000",
   "version": "1.0.0",
   "description": "Sakura Time 2000",
-  "scripts": {
-    "build": "parcel build index.html node_modules/html5-shell/themes/*",
-    "dev": "parcel index.html node_modules/html5-shell/themes/*"
-  },
+  "keywords": [],
+  "author": "Tatu Arvela",
+  "license": "ISC",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TatuArvela/Time-2000.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/TatuArvela/Time-2000/issues"
   },
   "homepage": "https://github.com/TatuArvela/Time-2000#readme",
-  "browserslist": [
-    "last 1 Chrome versions"
+  "//1": [
+    "-------------------------------------------------------------------------",
+    "INSTALLATION AND RUNNING"
   ],
+  "scripts": {
+    "build": "parcel build index.html node_modules/html5-shell/themes/*",
+    "dev": "parcel serve index.html node_modules/html5-shell/themes/*"
+  },
   "devDependencies": {
-    "parcel-bundler": "^1.12.3",
-    "parcel-plugin-eslint": "^1.0.7",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-html": "^6.0.0",
+    "eslint-plugin-import": "^2.19.1",
+    "parcel-bundler": "^1.12.4",
     "sass": "^1.22.9"
   },
   "dependencies": {
-    "eslint": "^6.1.0",
     "moment": "^2.24.0",
     "normalize.css": "^8.0.1",
-    "html5-win-classic-shell": "TatuArvela/html5-win-classic-shell"
+    "html5-shell": "../html5-shell"
   },
+  "engines": {
+    "node": ">= 12.0.0"
+  },
+  "browserslist": [
+    "last 2 chrome  version",
+    "last 2 firefox version"
+  ],
+  "//2": [
+    "-------------------------------------------------------------------------",
+    "COMMAND-SPECIFIC PROPERTIES"
+  ],
   "eslintConfig": {
     "parserOptions": {
       "ecmaVersion": 6,
       "sourceType": "module"
     },
-    "rules": {
-      "brace-style": [
-        "error",
-        "stroustrup",
-        {
-          "allowSingleLine": true
-        }
-      ]
-    }
+    "env": {
+      "browser": true
+    },
+    "extends": "airbnb-base",
+    "plugins": ["html"]
   }
 }

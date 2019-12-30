@@ -9,8 +9,8 @@ const defaults = {
   task4time: '00:00',
   task5time: '00:00',
   task6time: '00:00',
-  planned: '07:30'
-}
+  planned: '07:30',
+};
 
 const empty = {
   start: '00:00',
@@ -23,8 +23,8 @@ const empty = {
   task4time: '00:00',
   task5time: '00:00',
   task6time: '00:00',
-  planned: '00:00'
-}
+  planned: '00:00',
+};
 
 const fields = [
   'start',
@@ -46,11 +46,11 @@ const fields = [
   'total',
   'unlogged',
   'planned',
-  'difference'
+  'difference',
 ];
 
 export {
   defaults,
   empty,
   fields,
-}
+};
