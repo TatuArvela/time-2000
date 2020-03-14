@@ -8,7 +8,7 @@
   "description": "Sakura Time 2000",
   "keywords": [],
   "author": "Tatu Arvela",
-  "license": "ISC",
+  "license": "EUPL-1.2",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TatuArvela/Time-2000.git"
@@ -22,21 +22,38 @@
     "INSTALLATION AND RUNNING"
   ],
   "scripts": {
-    "build": "parcel build index.html node_modules/html5-shell/themes/*",
-    "dev": "parcel serve index.html node_modules/html5-shell/themes/*"
-  },
-  "devDependencies": {
-    "eslint": "^6.1.0",
-    "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-html": "^6.0.0",
-    "eslint-plugin-import": "^2.19.1",
-    "parcel-bundler": "^1.12.4",
-    "sass": "^1.22.9"
+    "build": "parcel build src/index.html node_modules/html5-shell/themes/*",
+    "dev": "parcel serve src/index.html node_modules/html5-shell/themes/*",
+    "test": "jest",
+    "lint": "eslint src themes",
+    "stylelint": "stylelint src themes"
   },
   "dependencies": {
     "moment": "^2.24.0",
     "normalize.css": "^8.0.1",
     "html5-shell": "../html5-shell"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.25",
+    "@typescript-eslint/eslint-plugin": "^2.13.0",
+    "@typescript-eslint/parser": "^2.13.0",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-airbnb-typescript": "^6.3.1",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-html": "^6.0.0",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-simple-import-sort": "^5.0.2",
+    "jest": "^25.1.0",
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.22.9",
+    "stylelint": "^12.0.1",
+    "stylelint-config-prettier": "^8.0.0",
+    "stylelint-prettier": "^1.1.2",
+    "stylelint-selector-bem-pattern": "^2.1.0",
+    "ts-jest": "^24.2.0",
+    "typescript": "^3.7.4"
   },
   "engines": {
     "node": ">= 12.0.0"
@@ -49,15 +66,33 @@
     "-------------------------------------------------------------------------",
     "COMMAND-SPECIFIC PROPERTIES"
   ],
+  "prettier": {
+    "trailingComma": "es5",
+    "singleQuote": true
+  },
   "eslintConfig": {
-    "parserOptions": {
-      "ecmaVersion": 6,
-      "sourceType": "module"
-    },
+    "extends": [
+      "airbnb-typescript/base",
+      "plugin:prettier/recommended"
+    ],
+    "plugins": [
+      "html",
+      "prettier",
+      "simple-import-sort"
+    ],
     "env": {
       "browser": true
     },
-    "extends": "airbnb-base",
-    "plugins": ["html"]
+    "parserOptions": {
+      "ecmaVersion": 8,
+      "sourceType": "module"
+    },
+    "rules": {
+      "simple-import-sort/sort": "error"
+    },
+    "ignorePatterns": [
+      "node_modules",
+      "dist"
+    ]
   }
 }

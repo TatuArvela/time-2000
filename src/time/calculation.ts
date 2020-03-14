@@ -10,7 +10,7 @@ const calculateTotalTime = (getValue) => {
   return totalTime;
 };
 
-const calculateUnloggedTime = (getValue) => {
+const calculateUnloggedTime = (totalTime, getValue) => {
   let unloggedTime = subtractTime(totalTime, getValue('task1time'));
   unloggedTime = subtractTime(unloggedTime, getValue('task2time'));
   unloggedTime = subtractTime(unloggedTime, getValue('task3time'));
@@ -21,7 +21,7 @@ const calculateUnloggedTime = (getValue) => {
   return unloggedTime;
 };
 
-const calculateTimeDifference = () => {
+const calculateTimeDifference = (totalTime, getValue) => {
   let timeDifference;
   if (getValue('planned') >= totalTime) {
     timeDifference = subtractTime(getValue('planned'), totalTime);
@@ -33,11 +33,9 @@ const calculateTimeDifference = () => {
 };
 
 const calculateTimes = (getValue, setValue) => {
-  const times = 
-
   const totalTime = calculateTotalTime(getValue);
-  const unloggedTime = calculateUnloggedTime(getValue);
-  const timeDifference = calculateTimeDifference();
+  const unloggedTime = calculateUnloggedTime(totalTime, getValue);
+  const timeDifference = calculateTimeDifference(totalTime, getValue);
 
   setValue('total', totalTime);
   setValue('unlogged', unloggedTime);

@@ -13,37 +13,38 @@ const Time = (shell) => {
 
   // --- //
 
-  const getData = dataGetter(appWindow);
-  const setData = dataSetter(appWindow);
-  const getValue = valueGetter(appWindow);
-  const setValue = valueSetter(appWindow);
+  const getData = dataGetter(applicationWindow);
+  const setData = dataSetter(applicationWindow);
+  const getValue = valueGetter(applicationWindow);
+  const setValue = valueSetter(applicationWindow);
 
   const initializeInputs = () => {
-    const inputs = appWindow.querySelectorAll('input[data-type="time"]');
-    for (const input in inputs) {
+    const inputs = applicationWindow.querySelectorAll('input[data-type="time"]');
+
+    inputs.forEach((input) => {
       if (inputs[input].addEventListener != null) {
         inputs[input].addEventListener('keyup', () => {
           calculateTimes(getValue, setValue);
         });
       }
-    }
+    });
   };
 
   const initializeButtons = () => {
-    const buttons = appWindow.querySelectorAll('time-button');
-    for (const button in buttons) {
+    const buttons = applicationWindow.querySelectorAll('time-button');
+    buttons.forEach((button) => {
       if (buttons[button].addEventListener != null) {
         buttons[button].addEventListener('click', () => {
           calculateTimes(getValue, setValue);
         });
       }
-    }
+    });
   };
 
   const initialize = () => {
     initializeInputs();
     initializeButtons();
-    addToolbarFunctions(appWindow.querySelector('.toolbar'), getData, setData);
+    addToolbarFunctions(applicationWindow.querySelector('.toolbar'), getData, setData);
 
     setData(defaults);
     calculateTimes(getValue, setValue);

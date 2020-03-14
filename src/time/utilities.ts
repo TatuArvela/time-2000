@@ -13,17 +13,19 @@ const dataGetter = (appWindow) => () => {
 const dataSetter = (appWindow) => (values) => {
   fields.forEach((field) => {
     const value = values[fields[field]] != null ? values[fields[field]] : '';
-    appWindow.querySelector(`#${fields[field]}`).value = value;
+    const target = appWindow.querySelector(`#${fields[field]}`);
+    target.value = value;
   });
 };
 
 const valueGetter = (appWindow) => (id) => {
   const { value } = appWindow.querySelector(`#${id}`);
-  return value != '' ? value : '00:00';
+  return value !== '' ? value : '00:00';
 };
 
 const valueSetter = (appWindow) => (id, value) => {
-  appWindow.querySelector(`#${id}`).value = value;
+  const target = appWindow.querySelector(`#${id}`);
+  target.value = value;
 };
 
 export {
