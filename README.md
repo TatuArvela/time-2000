@@ -15,7 +15,7 @@ Time can easily integrate into your other business applications via the included
 
 ![Sakura Time 2000 full logo](./full.png?raw=true "Sakura Time 2000")
 
-### [**[ Sakura Time Trial Version ]**](https://tatuarvela.github.io/Sakura-Time-2000/)
+### [**[ Sakura Time Trial Version ]**](https://tatuarvela.github.io/Time-2000/)
 
 ## System Requirements
 
