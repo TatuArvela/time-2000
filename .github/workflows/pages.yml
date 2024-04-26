@@ -16,11 +16,11 @@ jobs:
 
       - name: Install dependencies and build
         run: |
-          npm set "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN"
+          npm set "//npm.pkg.github.com/:_authToken=$AUTH_TOKEN"
           npm install
           npm run build
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
