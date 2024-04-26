@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "@tatuarvela/wisp": "^2.5.1",
+    "@tatuarvela/wisp-win-classic-theme": "^2.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.64",
