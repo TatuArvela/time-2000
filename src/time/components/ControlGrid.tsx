@@ -10,6 +10,7 @@ const ControlGrid = ({ children }: Props) => (
       display: 'grid',
       gridTemplateColumns: '1fr 1fr',
       columnGap: '6px',
+      paddingTop: '2px'
     }}
   >
     {children}

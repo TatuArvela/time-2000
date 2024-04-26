@@ -1,10 +1,10 @@
 import { Icon } from '@tatuarvela/wisp';
 
-import iconExport from './assets/icon-export.png';
-import iconNew from './assets/icon-new.png';
-import iconOpen from './assets/icon-open.png';
-import iconSave from './assets/icon-save.png';
-import iconTime from './assets/icon-time.png';
+import iconExport from './icon-export.png';
+import iconNew from './icon-new.png';
+import iconOpen from './icon-open.png';
+import iconSave from './icon-save.png';
+import iconTime from './icon-time.png';
 
 const icons: Record<string, Icon> = {
   time: {
