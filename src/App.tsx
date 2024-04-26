@@ -41,8 +41,8 @@ function App() {
       win2k,
       vaporwin,
     ]}>
-      <ThemeSwitcher />
-      <Window id="time-2000" title="Time 2000" width={360} height={532} isClosable={false} isMinimizable={true} isMaximizable={false} alwaysShowCloseButton={true}>
+      <ThemeSwitcher height={50} />
+      <Window id="time-2000" title="Sakura Time 2000" icon={icons.time} width={360} height={540} isClosable={false} isMinimizable={true} isMaximizable={false} alwaysShowCloseButton={true}>
         <Toolbar>
           <ToolbarButton icon={icons.new} />
           <ToolbarButton icon={icons.open} />
