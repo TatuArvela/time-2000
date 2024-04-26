@@ -1,8 +1,0 @@
-{
-  "parserOptions": {
-    "ecmaVersion": 6
-  },
-  "rules": {
-      "brace-style": ["error", "stroustrup", { "allowSingleLine": true }]
-  }
-}

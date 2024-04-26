@@ -1,6 +1,6 @@
 # Sakura Time 2000
 
-![Sakura Time 2000 box art](./boxart-photocopy.png?raw=true "Sakura Time 2000")
+![Sakura Time 2000 box art](./assets/boxart-photocopy.png?raw=true "Sakura Time 2000")
 
 ## Discover Time
 
@@ -13,15 +13,15 @@ Time 2000 requires no installation, as it works instantly within your Web browse
 **Get organized, get connected, and get great results with ease!**  
 Time can easily integrate into your other business applications via the included import/export tool.
 
-![Sakura Time 2000 full logo](./full.png?raw=true "Sakura Time 2000")
+![Sakura Time 2000 full logo](./assets/full.png?raw=true "Sakura Time 2000")
 
-### [**[ Sakura Time Trial Version ]**](https://tatuarvela.github.io/Time-2000/)
+### [**[ Sakura Time Trial Version ]**](https://tatuarvela.github.io/time-2000/)
 
 ## System Requirements
 
 * Compatible with Microsoft Windows 3.1, 95, 98, Me and 2000
 
-![Sakura Time 2000 full logo](./48-3.png?raw=true "Sakura Time 2000") ![Sakura Time 2000 full logo](./48-97.png?raw=true "Sakura Time 2000") ![Sakura Time 2000 full logo](./48.png?raw=true "Sakura Time 2000")
+![Sakura Time 3](./assets/48-3.png?raw=true "Sakura Time 3") ![Sakura Time 97](./assets/48-97.png?raw=true "Sakura Time 97") ![Sakura Time 2000](./assets/48.png?raw=true "Sakura Time 2000")
 
 ---
 
