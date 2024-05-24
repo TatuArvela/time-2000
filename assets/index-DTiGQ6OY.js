@@ -2059,7 +2059,7 @@ Error generating stack: `+o.message+`
   image-rendering: pixelated;
   margin-right: 4px;
   position: relative;
-  top: 1px;
+  top: 2px;
   width: 16px;
 `,VersionInfo:C`
   bottom: 30px;
