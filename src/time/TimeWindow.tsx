@@ -22,7 +22,7 @@ const TimeWindow = () => {
       title="Sakura Time 2000"
       icon={icons.time}
       width={360}
-      height={540}
+      height={515}
       isClosable={false}
       isMinimizable={true}
       isMaximizable={false}
