@@ -34,7 +34,8 @@ export function calculateTimes(values: Values) {
 
   let timeDifference;
   if (getValue('planned') >= totalTime) {
-    timeDifference = formatTime(subtractTime(getValue('planned'), totalTime));
+    timeDifference =
+      '+' + formatTime(subtractTime(totalTime, getValue('planned')));
   } else {
     timeDifference =
       '-' + formatTime(subtractTime(totalTime, getValue('planned')));
